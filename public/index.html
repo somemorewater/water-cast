@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WaterCast - Live Streaming Platform</title>
+    <link rel="shortcut icon" href="./img/logo.webp" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top">
+        <div class="container d-flex">
+            <a class="navbar-brand fw-bold fs-4" href="./index.html">
+                <img class="w-50" src="./img/watercast-text.webp" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="./index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./go-live.html">Go Live</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-primary text-white px-3 ms-2" href="./signup.html">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center min-vh-75">
+                <div class="col-lg-6">
+                    <h1 class="display-3 fw-bold mb-4">Stream Live.<br>Connect Instantly.</h1>
+                    <p class="lead text-muted mb-4">Professional live streaming made simple. Share your moments with the world in real-time.</p>
+                    <div class="d-flex gap-3">
+                        <a href="signup.html" class="btn btn-primary btn-lg px-4">Get Started</a>
+                        <a href="go-live.html" class="btn btn-outline-primary btn-lg px-4">Go Live Now</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-placeholder">
+                        <div class="placeholder-content">
+                            <div class="live-indicator-large">
+                                <span class="live-dot"></span>
+                                LIVE
+                            </div>
+                            <p class="text-muted mt-3">Start Broadcasting</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Streams Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fw-bold">Live Now</h2>
+                <a href="#" class="text-primary text-decoration-none">View All →</a>
+            </div>
+            <div class="row g-4" id="liveStreams">
+                <!-- Stream Card 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card stream-card">
+                        <div class="stream-thumbnail">
+                            <a href="watch.html">
+                                <div class="thumbnail-placeholder"></div>
+                                <div class="live-badge">
+                                    <span class="live-dot"></span>
+                                    LIVE
+                                </div>
+                                <div class="viewer-count">2.3K viewers</div>
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title mb-2">Tech Talk: Web Development</h5>
+                            <p class="text-muted small mb-2">StreamerName</p>
+                            <span class="badge bg-light text-dark">Technology</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stream Card 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card stream-card">
+                        <div class="stream-thumbnail">
+                            <a href="watch.html">
+                                <div class="thumbnail-placeholder"></div>
+                                <div class="live-badge">
+                                    <span class="live-dot"></span>
+                                    LIVE
+                                </div>
+                                <div class="viewer-count">5.1K viewers</div>
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title mb-2">Gaming Marathon</h5>
+                            <p class="text-muted small mb-2">GamerPro</p>
+                            <span class="badge bg-light text-dark">Gaming</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stream Card 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card stream-card">
+                        <div class="stream-thumbnail">
+                            <a href="watch.html">
+                                <div class="thumbnail-placeholder"></div>
+                                <div class="live-badge">
+                                    <span class="live-dot"></span>
+                                    LIVE
+                                </div>
+                                <div class="viewer-count">892 viewers</div>
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title mb-2">Cooking Show: Italian Cuisine</h5>
+                            <p class="text-muted small mb-2">ChefMario</p>
+                            <span class="badge bg-light text-dark">Cooking</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold mb-3">Why WaterCast?</h2>
+                <p class="text-muted">Everything you need for professional live streaming</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card text-center p-4">
+                        <div class="feature-icon mb-3">⚡</div>
+                        <h5 class="fw-bold mb-2">Ultra-Fast Streaming</h5>
+                        <p class="text-muted">Low latency streaming ensures real-time interaction with your audience</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card text-center p-4">
+                        <div class="feature-icon mb-3">🎥</div>
+                        <h5 class="fw-bold mb-2">HD Quality</h5>
+                        <p class="text-muted">Crystal clear video quality up to 1080p for professional broadcasts</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card text-center p-4">
+                        <div class="feature-icon mb-3">🔒</div>
+                        <h5 class="fw-bold mb-2">Secure & Reliable</h5>
+                        <p class="text-muted">Enterprise-grade security and 99.9% uptime guarantee</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-light py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="text-muted mb-0">&copy; 2024 WaterCast. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-muted text-decoration-none me-3">Privacy</a>
+                    <a href="#" class="text-muted text-decoration-none me-3">Terms</a>
+                    <a href="#" class="text-muted text-decoration-none">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
