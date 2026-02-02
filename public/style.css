@@ -44,6 +44,10 @@ body {
     color: var(--primary-color);
 }
 
+.logo {
+    max-width:  128px;
+}
+
 /* Hero Section */
 .hero-section {
     padding: 4rem 0;
