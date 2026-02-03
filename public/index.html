@@ -1,196 +1,258 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WaterCast - Live Streaming Platform</title>
-    <link rel="shortcut icon" href="./img/logo.webp" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./style.css">
-</head>
-<body>
+    <link rel="shortcut icon" href="./img/logo.webp" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+      @keyframes pulse-dot {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+      }
+      .pulse-dot {
+        animation: pulse-dot 2s infinite;
+      }
+      body {
+        background-color: #fff;
+        background-size: 40px 40px;
+        background-image:
+          linear-gradient(to right, rgba(128, 128, 128, 0.099) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(128, 128, 128, 0.099) 1px, transparent 1px);
+      }
+    </style>
+  </head>
+  <body class="font-sans text-gray-900">
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top">
-        <div class="container">
-            <div>
-                <a class="navbar-brand fw-bold fs-4" href="./index.html">
-                    <img class="logo" src="./img/watercast-text.webp" alt="">
-                </a>
-            </div>
-            <div>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="./index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./go-live.html">Go Live</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./login.html">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-primary text-white px-3 ms-2" href="./signup.html">Sign Up</a>
-                    </li>
-                </ul>
-            </div>
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+      <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between h-16">
+          <a href="./index.html" class="flex items-center">
+            <img class="h-8 w-auto" src="./img/watercast-text.webp" alt="WaterCast" />
+          </a>
+          
+          <button class="md:hidden text-gray-700" id="mobileMenuBtn">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+          
+          <div class="hidden md:flex items-center space-x-6">
+            <form class="relative" role="search">
+              <input
+                class="w-96 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                type="search"
+                placeholder="Search"
+              />
+              <i class="fas fa-search absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+            </form>
+            
+            <a class="text-gray-700 hover:text-blue-600 font-medium transition" href="./index.html">Home</a>
+            <a class="text-gray-700 hover:text-blue-600 font-medium transition" href="./go-live.html">Go Live</a>
+            <a class="text-gray-700 hover:text-blue-600 font-medium transition" href="./login.html">Login</a>
+            <a class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-semibold" href="./signup.html">Sign Up</a>
+          </div>
         </div>
+        
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden pb-4" id="mobileMenu">
+          <form class="mb-4" role="search">
+            <input
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              type="search"
+              placeholder="Search"
+            />
+          </form>
+          <div class="flex flex-col space-y-2">
+            <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./index.html">Home</a>
+            <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./go-live.html">Go Live</a>
+            <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./login.html">Login</a>
+            <a class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-semibold text-center" href="./signup.html">Sign Up</a>
+          </div>
+        </div>
+      </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
-            <div class="row align-items-center min-vh-75">
-                <div class="col-lg-6">
-                    <h1 class="display-3 fw-bold mb-4">Stream Live.<br>Connect Instantly.</h1>
-                    <p class="lead text-muted mb-4">Professional live streaming made simple. Share your moments with the world in real-time.</p>
-                    <div class="d-flex gap-3">
-                        <a href="signup.html" class="btn btn-primary btn-lg px-4">Get Started</a>
-                        <a href="go-live.html" class="btn btn-outline-primary btn-lg px-4">Go Live Now</a>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="hero-placeholder">
-                        <div class="placeholder-content">
-                            <div class="live-indicator-large">
-                                <span class="live-dot"></span>
-                                LIVE
-                            </div>
-                            <p class="text-muted mt-3">Start Broadcasting</p>
-                        </div>
-                    </div>
-                </div>
+    <section class="py-16 md:py-24">
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-2 gap-12 items-center min-h-[75vh]">
+          <div>
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+              Stream Live.<br />Connect Instantly.
+            </h1>
+            <p class="text-xl text-gray-600 mb-8">
+              Professional live streaming made simple. Share your moments with
+              the world in real-time.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="signup.html" class="bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition font-semibold text-lg text-center hover:-translate-y-1 duration-200">
+                <i class="fas fa-rocket mr-2"></i>Get Started
+              </a>
+              <a href="go-live.html" class="border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-lg hover:bg-blue-50 transition font-semibold text-lg text-center">
+                <i class="fas fa-video mr-2"></i>Go Live Now
+              </a>
             </div>
+          </div>
+          <div>
+            <div class="relative rounded-xl overflow-hidden p-16 text-center text-white" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+              <div class="absolute inset-0 opacity-10" style="background: url('data:image/svg+xml,<svg width=&quot;100&quot; height=&quot;100&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;><rect width=&quot;100&quot; height=&quot;100&quot; fill=&quot;none&quot; stroke=&quot;white&quot; stroke-width=&quot;1&quot;/></svg>'); background-size: 50px 50px;"></div>
+              <div class="relative z-10">
+                <div class="inline-flex items-center gap-2 bg-white bg-opacity-20 backdrop-blur-md px-6 py-3 rounded-full font-bold text-xl tracking-wider">
+                  <span class="w-2 h-2 bg-white rounded-full pulse-dot"></span>
+                  LIVE
+                </div>
+                <p class="text-gray-200 mt-4">Start Broadcasting</p>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Live Streams Section -->
-    <section class="py-5 bg-light">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="fw-bold">Live Now</h2>
-                <a href="#" class="text-primary text-decoration-none">View All →</a>
-            </div>
-            <div class="row g-4" id="liveStreams">
-                <!-- Stream Card 1 -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="card stream-card">
-                        <div class="stream-thumbnail">
-                            <a href="watch.html">
-                                <div class="thumbnail-placeholder"></div>
-                                <div class="live-badge">
-                                    <span class="live-dot"></span>
-                                    LIVE
-                                </div>
-                                <div class="viewer-count">2.3K viewers</div>
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title mb-2">Tech Talk: Web Development</h5>
-                            <p class="text-muted small mb-2">StreamerName</p>
-                            <span class="badge bg-light text-dark">Technology</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Stream Card 2 -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="card stream-card">
-                        <div class="stream-thumbnail">
-                            <a href="watch.html">
-                                <div class="thumbnail-placeholder"></div>
-                                <div class="live-badge">
-                                    <span class="live-dot"></span>
-                                    LIVE
-                                </div>
-                                <div class="viewer-count">5.1K viewers</div>
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title mb-2">Gaming Marathon</h5>
-                            <p class="text-muted small mb-2">GamerPro</p>
-                            <span class="badge bg-light text-dark">Gaming</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Stream Card 3 -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="card stream-card">
-                        <div class="stream-thumbnail">
-                            <a href="watch.html">
-                                <div class="thumbnail-placeholder"></div>
-                                <div class="live-badge">
-                                    <span class="live-dot"></span>
-                                    LIVE
-                                </div>
-                                <div class="viewer-count">892 viewers</div>
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title mb-2">Cooking Show: Italian Cuisine</h5>
-                            <p class="text-muted small mb-2">ChefMario</p>
-                            <span class="badge bg-light text-dark">Cooking</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center mb-8">
+          <h2 class="text-3xl font-bold">Live Now</h2>
+          <a href="#" class="text-blue-600 hover:text-blue-700 font-medium">
+            View All <i class="fas fa-arrow-right ml-1"></i>
+          </a>
         </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Stream Card 1 -->
+          <div class="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg hover:-translate-y-1 transition duration-200">
+            <a href="watch.html" class="block relative">
+              <div class="aspect-video bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center">
+                <i class="fas fa-play text-white text-4xl opacity-75"></i>
+              </div>
+              <div class="absolute top-3 left-3 bg-red-600 text-white px-3 py-1 rounded text-xs font-bold flex items-center gap-1.5">
+                <span class="w-2 h-2 bg-white rounded-full pulse-dot"></span>
+                LIVE
+              </div>
+              <div class="absolute bottom-3 right-3 bg-black bg-opacity-75 backdrop-blur-sm text-white px-3 py-1 rounded text-sm font-semibold">
+                <i class="fas fa-eye mr-1"></i>2.3K viewers
+              </div>
+            </a>
+            <div class="p-4">
+              <h5 class="font-bold text-lg mb-2">Tech Talk: Web Development</h5>
+              <p class="text-gray-600 text-sm mb-2">StreamerName</p>
+              <span class="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-xs font-semibold">Technology</span>
+            </div>
+          </div>
+
+          <!-- Stream Card 2 -->
+          <div class="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg hover:-translate-y-1 transition duration-200">
+            <a href="watch.html" class="block relative">
+              <div class="aspect-video bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
+                <i class="fas fa-gamepad text-white text-4xl opacity-75"></i>
+              </div>
+              <div class="absolute top-3 left-3 bg-red-600 text-white px-3 py-1 rounded text-xs font-bold flex items-center gap-1.5">
+                <span class="w-2 h-2 bg-white rounded-full pulse-dot"></span>
+                LIVE
+              </div>
+              <div class="absolute bottom-3 right-3 bg-black bg-opacity-75 backdrop-blur-sm text-white px-3 py-1 rounded text-sm font-semibold">
+                <i class="fas fa-eye mr-1"></i>5.1K viewers
+              </div>
+            </a>
+            <div class="p-4">
+              <h5 class="font-bold text-lg mb-2">Gaming Marathon</h5>
+              <p class="text-gray-600 text-sm mb-2">GamerPro</p>
+              <span class="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-xs font-semibold">Gaming</span>
+            </div>
+          </div>
+
+          <!-- Stream Card 3 -->
+          <div class="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg hover:-translate-y-1 transition duration-200">
+            <a href="watch.html" class="block relative">
+              <div class="aspect-video bg-gradient-to-br from-orange-500 to-orange-700 flex items-center justify-center">
+                <i class="fas fa-utensils text-white text-4xl opacity-75"></i>
+              </div>
+              <div class="absolute top-3 left-3 bg-red-600 text-white px-3 py-1 rounded text-xs font-bold flex items-center gap-1.5">
+                <span class="w-2 h-2 bg-white rounded-full pulse-dot"></span>
+                LIVE
+              </div>
+              <div class="absolute bottom-3 right-3 bg-black bg-opacity-75 backdrop-blur-sm text-white px-3 py-1 rounded text-sm font-semibold">
+                <i class="fas fa-eye mr-1"></i>892 viewers
+              </div>
+            </a>
+            <div class="p-4">
+              <h5 class="font-bold text-lg mb-2">Cooking Show: Italian Cuisine</h5>
+              <p class="text-gray-600 text-sm mb-2">ChefMario</p>
+              <span class="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-xs font-semibold">Cooking</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Features Section -->
-    <section class="py-5">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold mb-3">Why WaterCast?</h2>
-                <p class="text-muted">Everything you need for professional live streaming</p>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="feature-card text-center p-4">
-                        <div class="feature-icon mb-3">⚡</div>
-                        <h5 class="fw-bold mb-2">Ultra-Fast Streaming</h5>
-                        <p class="text-muted">Low latency streaming ensures real-time interaction with your audience</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-card text-center p-4">
-                        <div class="feature-icon mb-3">🎥</div>
-                        <h5 class="fw-bold mb-2">HD Quality</h5>
-                        <p class="text-muted">Crystal clear video quality up to 1080p for professional broadcasts</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-card text-center p-4">
-                        <div class="feature-icon mb-3">🔒</div>
-                        <h5 class="fw-bold mb-2">Secure & Reliable</h5>
-                        <p class="text-muted">Enterprise-grade security and 99.9% uptime guarantee</p>
-                    </div>
-                </div>
-            </div>
+    <section class="py-16">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Why WaterCast?</h2>
+          <p class="text-gray-600 text-lg">
+            Everything you need for professional live streaming
+          </p>
         </div>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-gray-50 rounded-lg p-8 text-center hover:-translate-y-1 transition duration-200">
+            <div class="text-5xl mb-4">
+              <i class="fas fa-bolt text-blue-600"></i>
+            </div>
+            <h5 class="font-bold text-xl mb-3">Ultra-Fast Streaming</h5>
+            <p class="text-gray-600">
+              Low latency streaming ensures real-time interaction with your
+              audience
+            </p>
+          </div>
+          <div class="bg-gray-50 rounded-lg p-8 text-center hover:-translate-y-1 transition duration-200">
+            <div class="text-5xl mb-4">
+              <i class="fas fa-video text-blue-600"></i>
+            </div>
+            <h5 class="font-bold text-xl mb-3">HD Quality</h5>
+            <p class="text-gray-600">
+              Crystal clear video quality up to 1080p for professional
+              broadcasts
+            </p>
+          </div>
+          <div class="bg-gray-50 rounded-lg p-8 text-center hover:-translate-y-1 transition duration-200">
+            <div class="text-5xl mb-4">
+              <i class="fas fa-lock text-blue-600"></i>
+            </div>
+            <h5 class="font-bold text-xl mb-3">Secure & Reliable</h5>
+            <p class="text-gray-600">
+              Enterprise-grade security and 99.9% uptime guarantee
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-light py-4 mt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <p class="text-muted mb-0">&copy; 2024 WaterCast. All rights reserved.</p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <a href="#" class="text-muted text-decoration-none me-3">Privacy</a>
-                    <a href="#" class="text-muted text-decoration-none me-3">Terms</a>
-                    <a href="#" class="text-muted text-decoration-none">Support</a>
-                </div>
-            </div>
+    <footer class="bg-gray-50 py-8 mt-16">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="text-gray-600 mb-4 md:mb-0">
+            &copy; 2024 WaterCast. All rights reserved.
+          </p>
+          <div class="flex gap-6">
+            <a href="#" class="text-gray-600 hover:text-blue-600 transition">Privacy</a>
+            <a href="#" class="text-gray-600 hover:text-blue-600 transition">Terms</a>
+            <a href="#" class="text-gray-600 hover:text-blue-600 transition">Support</a>
+          </div>
         </div>
+      </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <script>
+      // Mobile menu toggle
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    </script>
+  </body>
 </html>
