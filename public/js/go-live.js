@@ -5,6 +5,7 @@ let streamDurationSeconds = 0;
 
 // Elements
 const goLiveBtn = document.getElementById('goLiveBtn');
+const video = document.getElementById("videoPreview");
 const stopStreamBtn = document.getElementById('stopStreamBtn');
 const statusIndicator = document.getElementById('statusIndicator');
 const streamStats = document.getElementById('streamStats');
@@ -102,9 +103,12 @@ function simulateViewers() {
 }
 
 // Test Camera Button
-testCameraBtn.addEventListener('click', () => {
-    alert('Camera test functionality would open your camera preview here');
+testCameraBtn.addEventListener("click", async () => {
+  const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+  video.srcObject = stream;
+  video.classList.remove("hidden");
 });
+
 
 // Toggle Stream Key Visibility
 toggleKeyBtn.addEventListener('click', () => {
