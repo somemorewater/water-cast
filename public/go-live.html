@@ -1,44 +1,71 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Go Live - WaterCast</title>
-    <link rel="shortcut icon" href="./img/logo.webp" type="image/x-icon">
+    <link rel="shortcut icon" href="./img/logo.webp" type="image/x-icon" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
     <style>
       @keyframes pulse-dot {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.5; }
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
       }
       .pulse-dot {
         animation: pulse-dot 2s infinite;
       }
     </style>
-</head>
-<body class="font-sans text-gray-900">
+  </head>
+  <body class="font-sans text-gray-900">
     <!-- Navigation -->
     <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
       <div class="container mx-auto px-4">
         <div class="flex items-center justify-between h-16">
           <a href="./index.html" class="flex items-center">
-            <img class="h-8 w-auto" src="./img/watercast-text.webp" alt="WaterCast" />
+            <img class="h-16 w-auto" src="./img/logo.webp" alt="">
+            <img
+              class="h-8 w-auto"
+              src="./img/watercast-text.webp"
+              alt="WaterCast"
+            />
           </a>
-          
+
           <button class="md:hidden text-gray-700" id="mobileMenuBtn">
             <i class="fas fa-bars text-xl"></i>
           </button>
-          
+
           <div class="hidden md:flex items-center space-x-6">
-            <a class="text-gray-700 hover:text-blue-600 font-medium transition" href="index.html">Home</a>
-            <a class="text-blue-600 font-medium transition" href="go-live.html">Go Live</a>
-            <a class="text-gray-700 hover:text-blue-600 font-medium transition" href="login.html">Login</a>
-            <a class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-semibold" href="signup.html">Sign Up</a>
+            <a
+              class="text-gray-700 hover:text-blue-600 font-medium transition"
+              href="index.html"
+              >Home</a
+            >
+            <a class="text-blue-600 font-medium transition" href="go-live.html"
+              >Go Live</a
+            >
+            <a
+              class="text-gray-700 hover:text-blue-600 font-medium transition"
+              href="login.html"
+              >Login</a
+            >
+            <a
+              class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-semibold"
+              href="signup.html"
+              >Sign Up</a
+            >
           </div>
         </div>
 
-    <div class="hidden md:hidden pb-4" id="mobileMenu">
+        <div class="hidden md:hidden pb-4" id="mobileMenu">
           <form class="mb-4" role="search">
             <input
               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -47,10 +74,26 @@
             />
           </form>
           <div class="flex flex-col space-y-2">
-            <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./index.html">Home</a>
-            <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./go-live.html">Go Live</a>
-            <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./login.html">Login</a>
-            <a class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-semibold text-center" href="./signup.html">Sign Up</a>
+            <a
+              class="text-gray-700 hover:text-blue-600 font-medium py-2"
+              href="./index.html"
+              >Home</a
+            >
+            <a
+              class="text-gray-700 hover:text-blue-600 font-medium py-2"
+              href="./go-live.html"
+              >Go Live</a
+            >
+            <a
+              class="text-gray-700 hover:text-blue-600 font-medium py-2"
+              href="./login.html"
+              >Login</a
+            >
+            <a
+              class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-semibold text-center"
+              href="./signup.html"
+              >Sign Up</a
+            >
           </div>
         </div>
       </div>
@@ -58,207 +101,296 @@
 
     <!-- Main Content -->
     <div class="container mx-auto px-4 py-12">
-        <div class="grid lg:grid-cols-3 gap-8">
-            <div class="lg:col-span-2">
-                <h2 class="text-3xl font-bold mb-6">Stream Setup</h2>
-                
-                <!-- Preview Area -->
-                <div class="bg-black rounded-lg aspect-video flex items-center justify-center mb-6 relative">
-                    <div class="text-center text-white">
-                        <div class="mb-4">
-                            <span class="inline-flex items-center gap-2 bg-gray-700 bg-opacity-50 px-4 py-2 rounded-full text-sm font-semibold" id="statusIndicator">
-                                <span class="w-2 h-2 bg-gray-400 rounded-full pulse-dot"></span>
-                                OFFLINE
-                            </span>
-                        </div>
-                        <p class="text-gray-400 mb-4">Camera preview will appear here</p>
-                        <button class="border border-white text-white px-6 py-2 rounded-lg hover:bg-white hover:text-black transition" id="testCameraBtn">
-                            <i class="fas fa-camera mr-2"></i>Test Camera
-                        </button>
-                    </div>
-                </div>
+      <div class="grid lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2">
+          <h2 class="text-3xl font-bold mb-6">Stream Setup</h2>
 
-                <!-- Stream Controls -->
-                <div class="bg-white border border-gray-200 rounded-lg p-8">
-                    <h5 class="text-xl font-bold mb-6">Stream Information</h5>
-                    
-                    <form id="streamForm">
-                        <div class="mb-4">
-                            <label for="streamTitle" class="block text-gray-700 font-medium mb-2">
-                                <i class="fas fa-heading mr-2 text-gray-400"></i>Stream Title
-                            </label>
-                            <input 
-                                type="text" 
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
-                                id="streamTitle" 
-                                placeholder="Enter your stream title" 
-                                required
-                            >
-                        </div>
+          <!-- Preview Area -->
+          <div
+            class="bg-black rounded-lg aspect-video flex items-center justify-center mb-6 relative"
+          >
+            <video
+              id="videoPreview"
+              autoplay
+              muted
+              playsinline
+              class="absolute inset-0 w-full h-full object-cover rounded-lg hidden"
+            ></video>
 
-                        <div class="mb-4">
-                            <label for="streamDescription" class="block text-gray-700 font-medium mb-2">
-                                <i class="fas fa-align-left mr-2 text-gray-400"></i>Description
-                            </label>
-                            <textarea 
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
-                                id="streamDescription" 
-                                rows="3" 
-                                placeholder="Describe your stream"
-                            ></textarea>
-                        </div>
-
-                        <div class="grid md:grid-cols-2 gap-4 mb-4">
-                            <div>
-                                <label for="streamCategory" class="block text-gray-700 font-medium mb-2">
-                                    <i class="fas fa-folder mr-2 text-gray-400"></i>Category
-                                </label>
-                                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="streamCategory">
-                                    <option value="">Select category</option>
-                                    <option value="gaming">Gaming</option>
-                                    <option value="technology">Technology</option>
-                                    <option value="cooking">Cooking</option>
-                                    <option value="music">Music</option>
-                                    <option value="education">Education</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label for="streamQuality" class="block text-gray-700 font-medium mb-2">
-                                    <i class="fas fa-signal mr-2 text-gray-400"></i>Quality
-                                </label>
-                                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="streamQuality">
-                                    <option value="720p">720p HD</option>
-                                    <option value="1080p" selected>1080p Full HD</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="mb-6">
-                            <div class="flex items-center">
-                                <input 
-                                    class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" 
-                                    type="checkbox" 
-                                    id="enableChat" 
-                                    checked
-                                >
-                                <label class="ml-2 text-gray-700 font-medium" for="enableChat">
-                                    <i class="fas fa-comments mr-2 text-gray-400"></i>Enable chat
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="space-y-3">
-                            <button 
-                                type="button" 
-                                class="w-full bg-blue-600 text-white py-4 rounded-lg hover:bg-blue-700 transition font-semibold text-lg" 
-                                id="goLiveBtn"
-                            >
-                                <i class="fas fa-broadcast-tower mr-2"></i><span id="goLiveBtnText">Go Live</span>
-                            </button>
-                            <button 
-                                type="button" 
-                                class="w-full border-2 border-red-500 text-red-500 py-4 rounded-lg hover:bg-red-50 transition font-semibold text-lg hidden" 
-                                id="stopStreamBtn"
-                            >
-                                <i class="fas fa-stop-circle mr-2"></i>Stop Streaming
-                            </button>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Stream Stats (shown when live) -->
-                <div class="bg-white border border-gray-200 rounded-lg p-8 mt-6 hidden" id="streamStats">
-                    <h5 class="text-xl font-bold mb-6">Stream Statistics</h5>
-                    <div class="grid grid-cols-3 gap-4 text-center">
-                        <div>
-                            <div class="text-3xl font-bold text-blue-600 mb-1" id="viewerCount">0</div>
-                            <div class="text-sm text-gray-600"><i class="fas fa-eye mr-1"></i>Viewers</div>
-                        </div>
-                        <div>
-                            <div class="text-3xl font-bold text-blue-600 mb-1" id="streamDuration">00:00</div>
-                            <div class="text-sm text-gray-600"><i class="fas fa-clock mr-1"></i>Duration</div>
-                        </div>
-                        <div>
-                            <div class="text-3xl font-bold text-green-600 mb-1" id="streamHealth">Good</div>
-                            <div class="text-sm text-gray-600"><i class="fas fa-signal mr-1"></i>Connection</div>
-                        </div>
-                    </div>
-                </div>
+            <div class="text-center text-white">
+              <div class="mb-4">
+                <span
+                  class="inline-flex items-center gap-2 bg-gray-700 bg-opacity-50 px-4 py-2 rounded-full text-sm font-semibold"
+                  id="statusIndicator"
+                >
+                  <span
+                    class="w-2 h-2 bg-gray-400 rounded-full pulse-dot"
+                  ></span>
+                  OFFLINE
+                </span>
+              </div>
+              <p class="text-gray-400 mb-4">Camera preview will appear here</p>
+              <button
+                class="border border-white text-white px-6 py-2 rounded-lg hover:bg-white hover:text-black transition"
+                id="testCameraBtn"
+              >
+                <i class="fas fa-camera mr-2"></i>Test Camera
+              </button>
             </div>
+          </div>
 
-            <!-- Sidebar -->
-            <div class="lg:col-span-1">
-                <div class="bg-white border border-gray-200 rounded-lg p-6 mb-6">
-                    <h5 class="text-xl font-bold mb-4"><i class="fas fa-lightbulb mr-2 text-yellow-500"></i>Quick Tips</h5>
-                    <ul class="space-y-4">
-                        <li>
-                            <div class="font-semibold text-gray-800 mb-1">
-                                <i class="fas fa-video mr-2 text-blue-600"></i>Camera & Audio
-                            </div>
-                            <p class="text-sm text-gray-600">Ensure your camera and microphone are properly connected</p>
-                        </li>
-                        <li>
-                            <div class="font-semibold text-gray-800 mb-1">
-                                <i class="fas fa-wifi mr-2 text-blue-600"></i>Internet Connection
-                            </div>
-                            <p class="text-sm text-gray-600">Stable connection required (minimum 5 Mbps upload)</p>
-                        </li>
-                        <li>
-                            <div class="font-semibold text-gray-800 mb-1">
-                                <i class="fas fa-file-alt mr-2 text-blue-600"></i>Stream Title
-                            </div>
-                            <p class="text-sm text-gray-600">Use clear, descriptive titles to attract viewers</p>
-                        </li>
-                        <li>
-                            <div class="font-semibold text-gray-800 mb-1">
-                                <i class="fas fa-users mr-2 text-blue-600"></i>Engage Viewers
-                            </div>
-                            <p class="text-sm text-gray-600">Interact with chat to build your audience</p>
-                        </li>
-                    </ul>
+          <!-- Stream Controls -->
+          <div class="bg-white border border-gray-200 rounded-lg p-8">
+            <h5 class="text-xl font-bold mb-6">Stream Information</h5>
+
+            <form id="streamForm">
+              <div class="mb-4">
+                <label
+                  for="streamTitle"
+                  class="block text-gray-700 font-medium mb-2"
+                >
+                  <i class="fas fa-heading mr-2 text-gray-400"></i>Stream Title
+                </label>
+                <input
+                  type="text"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  id="streamTitle"
+                  placeholder="Enter your stream title"
+                  required
+                />
+              </div>
+
+              <div class="mb-4">
+                <label
+                  for="streamDescription"
+                  class="block text-gray-700 font-medium mb-2"
+                >
+                  <i class="fas fa-align-left mr-2 text-gray-400"></i
+                  >Description
+                </label>
+                <textarea
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  id="streamDescription"
+                  rows="3"
+                  placeholder="Describe your stream"
+                ></textarea>
+              </div>
+
+              <div class="grid md:grid-cols-2 gap-4 mb-4">
+                <div>
+                  <label
+                    for="streamCategory"
+                    class="block text-gray-700 font-medium mb-2"
+                  >
+                    <i class="fas fa-folder mr-2 text-gray-400"></i>Category
+                  </label>
+                  <select
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    id="streamCategory"
+                  >
+                    <option value="">Select category</option>
+                    <option value="gaming">Gaming</option>
+                    <option value="technology">Technology</option>
+                    <option value="cooking">Cooking</option>
+                    <option value="music">Music</option>
+                    <option value="education">Education</option>
+                    <option value="other">Other</option>
+                  </select>
                 </div>
 
-                <div class="bg-white border border-gray-200 rounded-lg p-6">
-                    <h5 class="text-xl font-bold mb-4"><i class="fas fa-key mr-2 text-blue-600"></i>Stream Key</h5>
-                    <p class="text-sm text-gray-600 mb-3">Use this key with OBS or other streaming software:</p>
-                    <div class="flex gap-2 mb-3">
-                        <input 
-                            type="password" 
-                            class="flex-1 px-3 py-2 border border-gray-300 rounded-lg font-mono text-sm focus:outline-none" 
-                            id="streamKey" 
-                            value="sk_live_1234567890abcdef" 
-                            readonly
-                        >
-                        <button 
-                            class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition" 
-                            type="button" 
-                            id="toggleKeyBtn"
-                        >
-                            <i class="fas fa-eye"></i>
-                        </button>
-                    </div>
-                    <button 
-                        class="w-full border-2 border-blue-600 text-blue-600 py-2 rounded-lg hover:bg-blue-50 transition font-medium" 
-                        id="copyKeyBtn"
-                    >
-                        <i class="fas fa-copy mr-2"></i>Copy Key
-                    </button>
+                <div>
+                  <label
+                    for="streamQuality"
+                    class="block text-gray-700 font-medium mb-2"
+                  >
+                    <i class="fas fa-signal mr-2 text-gray-400"></i>Quality
+                  </label>
+                  <select
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    id="streamQuality"
+                  >
+                    <option value="720p">720p HD</option>
+                    <option value="1080p" selected>1080p Full HD</option>
+                  </select>
                 </div>
+              </div>
+
+              <div class="mb-6">
+                <div class="flex items-center">
+                  <input
+                    class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                    type="checkbox"
+                    id="enableChat"
+                    checked
+                  />
+                  <label
+                    class="ml-2 text-gray-700 font-medium"
+                    for="enableChat"
+                  >
+                    <i class="fas fa-comments mr-2 text-gray-400"></i>Enable
+                    chat
+                  </label>
+                </div>
+              </div>
+
+              <div class="space-y-3">
+                <button
+                  type="button"
+                  class="w-full bg-blue-600 text-white py-4 rounded-lg hover:bg-blue-700 transition font-semibold text-lg"
+                  id="goLiveBtn"
+                >
+                  <i class="fas fa-broadcast-tower mr-2"></i
+                  ><span id="goLiveBtnText">Go Live</span>
+                </button>
+                <button
+                  type="button"
+                  class="w-full border-2 border-red-500 text-red-500 py-4 rounded-lg hover:bg-red-50 transition font-semibold text-lg hidden"
+                  id="stopStreamBtn"
+                >
+                  <i class="fas fa-stop-circle mr-2"></i>Stop Streaming
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Stream Stats (shown when live) -->
+          <div
+            class="bg-white border border-gray-200 rounded-lg p-8 mt-6 hidden"
+            id="streamStats"
+          >
+            <h5 class="text-xl font-bold mb-6">Stream Statistics</h5>
+            <div class="grid grid-cols-3 gap-4 text-center">
+              <div>
+                <div
+                  class="text-3xl font-bold text-blue-600 mb-1"
+                  id="viewerCount"
+                >
+                  0
+                </div>
+                <div class="text-sm text-gray-600">
+                  <i class="fas fa-eye mr-1"></i>Viewers
+                </div>
+              </div>
+              <div>
+                <div
+                  class="text-3xl font-bold text-blue-600 mb-1"
+                  id="streamDuration"
+                >
+                  00:00
+                </div>
+                <div class="text-sm text-gray-600">
+                  <i class="fas fa-clock mr-1"></i>Duration
+                </div>
+              </div>
+              <div>
+                <div
+                  class="text-3xl font-bold text-green-600 mb-1"
+                  id="streamHealth"
+                >
+                  Good
+                </div>
+                <div class="text-sm text-gray-600">
+                  <i class="fas fa-signal mr-1"></i>Connection
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+
+        <!-- Sidebar -->
+        <div class="lg:col-span-1">
+          <div class="bg-white border border-gray-200 rounded-lg p-6 mb-6">
+            <h5 class="text-xl font-bold mb-4">
+              <i class="fas fa-lightbulb mr-2 text-yellow-500"></i>Quick Tips
+            </h5>
+            <ul class="space-y-4">
+              <li>
+                <div class="font-semibold text-gray-800 mb-1">
+                  <i class="fas fa-video mr-2 text-blue-600"></i>Camera & Audio
+                </div>
+                <p class="text-sm text-gray-600">
+                  Ensure your camera and microphone are properly connected
+                </p>
+              </li>
+              <li>
+                <div class="font-semibold text-gray-800 mb-1">
+                  <i class="fas fa-wifi mr-2 text-blue-600"></i>Internet
+                  Connection
+                </div>
+                <p class="text-sm text-gray-600">
+                  Stable connection required (minimum 5 Mbps upload)
+                </p>
+              </li>
+              <li>
+                <div class="font-semibold text-gray-800 mb-1">
+                  <i class="fas fa-file-alt mr-2 text-blue-600"></i>Stream Title
+                </div>
+                <p class="text-sm text-gray-600">
+                  Use clear, descriptive titles to attract viewers
+                </p>
+              </li>
+              <li>
+                <div class="font-semibold text-gray-800 mb-1">
+                  <i class="fas fa-users mr-2 text-blue-600"></i>Engage Viewers
+                </div>
+                <p class="text-sm text-gray-600">
+                  Interact with chat to build your audience
+                </p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white border border-gray-200 rounded-lg p-6">
+            <h5 class="text-xl font-bold mb-4">
+              <i class="fas fa-key mr-2 text-blue-600"></i>Stream Key
+            </h5>
+            <p class="text-sm text-gray-600 mb-3">
+              Use this key with OBS or other streaming software:
+            </p>
+            <div class="flex gap-2 mb-3">
+              <input
+                type="password"
+                class="flex-1 px-3 py-2 border border-gray-300 rounded-lg font-mono text-sm focus:outline-none"
+                id="streamKey"
+                value="sk_live_1234567890abcdef"
+                readonly
+              />
+              <button
+                class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition"
+                type="button"
+                id="toggleKeyBtn"
+              >
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+            <button
+              class="w-full border-2 border-blue-600 text-blue-600 py-2 rounded-lg hover:bg-blue-50 transition font-medium"
+              id="copyKeyBtn"
+            >
+              <i class="fas fa-copy mr-2"></i>Copy Key
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Footer -->
     <footer class="bg-gray-50 py-8 mt-16">
       <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row justify-between items-center">
-          <p class="text-gray-600 mb-4 md:mb-0">&copy; 2024 WaterCast. All rights reserved.</p>
+          <p class="text-gray-600 mb-4 md:mb-0">
+            &copy; 2026 WaterCast. All rights reserved.
+          </p>
           <div class="flex gap-6">
-            <a href="#" class="text-gray-600 hover:text-blue-600 transition">Privacy</a>
-            <a href="#" class="text-gray-600 hover:text-blue-600 transition">Terms</a>
-            <a href="#" class="text-gray-600 hover:text-blue-600 transition">Support</a>
+            <a href="#" class="text-gray-600 hover:text-blue-600 transition"
+              >Privacy</a
+            >
+            <a href="#" class="text-gray-600 hover:text-blue-600 transition"
+              >Terms</a
+            >
+            <a href="#" class="text-gray-600 hover:text-blue-600 transition"
+              >Support</a
+            >
           </div>
         </div>
       </div>
@@ -266,5 +398,5 @@
 
     <script src="./js/go-live.js"></script>
     <script src="./js/mobile-menu.js"></script>
-</body>
+  </body>
 </html>
