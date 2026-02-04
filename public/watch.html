@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Stream - WaterCast</title>
+    <link rel="shortcut icon" href="./img/logo.webp" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+      @keyframes pulse-dot {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+      }
+      .pulse-dot {
+        animation: pulse-dot 2s infinite;
+      }
+      .video-container:hover .video-controls {
+        opacity: 1;
+      }
+      .video-controls {
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .chat-messages {
+        max-height: 600px;
+        overflow-y: auto;
+      }
+    </style>
+</head>
+<body class="font-sans text-gray-900 bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+      <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between h-16">
+          <a href="./index.html" class="flex items-center">
+            <img class="h-16 w-auto" src="./img/logo.webp" alt="">
+            <img class="h-8 w-auto" src="./img/watercast-text.webp" alt="WaterCast" />
+          </a>
+          
+          <button class="md:hidden text-gray-700" id="mobileMenuBtn">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+          
+          <div class="hidden md:flex items-center space-x-6">
+            <a class="text-gray-700 hover:text-blue-600 font-medium transition" href="index.html">Home</a>
+            <a class="text-gray-700 hover:text-blue-600 font-medium transition" href="go-live.html">Go Live</a>
+            <a class="text-gray-700 hover:text-blue-600 font-medium transition" href="login.html">Login</a>
+            <a class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-semibold" href="signup.html">Sign Up</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid px-4 py-6">
+        <div class="grid lg:grid-cols-4 gap-6">
+            <!-- Video Player Section -->
+            <div class="lg:col-span-3">
+                <!-- Video Player -->
+                <div class="video-container relative bg-black rounded-lg overflow-hidden">
+                    <div class="absolute top-0 left-0 right-0 bg-black bg-opacity-50 backdrop-blur-sm p-4 flex items-center justify-between z-20">
+                        <div class="flex items-center gap-2 bg-red-600 text-white px-3 py-1 rounded text-sm font-bold">
+                            <span class="w-2 h-2 bg-white rounded-full pulse-dot"></span>
+                            LIVE
+                        </div>
+                        <div class="bg-black bg-opacity-75 backdrop-blur-sm text-white px-3 py-1 rounded text-sm font-semibold" id="viewerCount">
+                            <i class="fas fa-eye mr-1"></i>2,347 viewers
+                        </div>
+                    </div>
+                    
+                    <div class="aspect-video bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center" id="videoPlayer">
+                        <div class="text-center text-white">
+                            <div class="mb-4">
+                                <i class="fas fa-play-circle text-7xl opacity-75"></i>
+                            </div>
+                            <p class="text-xl">Stream Playing</p>
+                        </div>
+                    </div>
+
+                    <div class="video-controls absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 flex items-center gap-4" id="videoControls">
+                        <button class="text-white text-2xl hover:scale-110 transition" id="playPauseBtn" title="Play/Pause">
+                            <i class="fas fa-pause"></i>
+                        </button>
+                        <button class="text-white text-2xl hover:scale-110 transition" id="muteBtn" title="Mute">
+                            <i class="fas fa-volume-up"></i>
+                        </button>
+                        <input type="range" class="w-24 accent-blue-600" min="0" max="100" value="50" id="volumeSlider">
+                        <div class="ml-auto flex items-center gap-3">
+                            <button class="text-white px-3 py-1 bg-white bg-opacity-20 rounded hover:bg-opacity-30 transition text-sm font-semibold" id="qualityBtn" title="Quality">
+                                HD
+                            </button>
+                            <button class="text-white text-2xl hover:scale-110 transition" id="fullscreenBtn" title="Fullscreen">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stream Info -->
+                <div class="bg-white rounded-lg p-6 mt-6">
+                    <h3 class="text-2xl font-bold mb-4">Tech Talk: Building Modern Web Applications</h3>
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                                ST
+                            </div>
+                            <div class="ml-3">
+                                <div class="font-bold">StreamerTech</div>
+                                <div class="text-sm text-gray-600">
+                                    <i class="fas fa-users mr-1"></i>12.5K followers
+                                </div>
+                            </div>
+                        </div>
+                        <button class="ml-auto bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-semibold">
+                            <i class="fas fa-user-plus mr-2"></i>Follow
+                        </button>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        Join us as we dive deep into modern web development practices, exploring the latest frameworks and tools. 
+                        We'll build a real-time application from scratch and discuss best practices for production deployments.
+                    </p>
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-semibold">
+                            <i class="fas fa-tag mr-1"></i>Technology
+                        </span>
+                        <span class="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-semibold">
+                            <i class="fas fa-code mr-1"></i>Web Development
+                        </span>
+                        <span class="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-semibold">
+                            <i class="fas fa-laptop-code mr-1"></i>Programming
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Section -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-lg overflow-hidden border border-gray-200 flex flex-col" style="height: 600px;">
+                    <div class="p-4 border-b border-gray-200 flex items-center justify-between">
+                        <h6 class="font-bold"><i class="fas fa-comments mr-2 text-blue-600"></i>Live Chat</h6>
+                        <span class="text-sm text-gray-600" id="chatViewers">2,347</span>
+                    </div>
+                    
+                    <div class="chat-messages flex-1 p-4 space-y-3 overflow-y-auto" id="chatMessages">
+                        <div class="chat-message">
+                            <span class="font-semibold text-blue-600">TechFan123</span>
+                            <span class="text-gray-800 ml-2">Great stream! 🔥</span>
+                        </div>
+                        <div class="chat-message">
+                            <span class="font-semibold text-blue-600">DevPro</span>
+                            <span class="text-gray-800 ml-2">Can you explain that again?</span>
+                        </div>
+                        <div class="chat-message">
+                            <span class="font-semibold text-blue-600">CodeMaster</span>
+                            <span class="text-gray-800 ml-2">This is awesome content!</span>
+                        </div>
+                        <div class="chat-message">
+                            <span class="font-semibold text-blue-600">WebWizard</span>
+                            <span class="text-gray-800 ml-2">What IDE are you using?</span>
+                        </div>
+                        <div class="chat-message">
+                            <span class="font-semibold text-blue-600">NewbieDev</span>
+                            <span class="text-gray-800 ml-2">Just subscribed! 👍</span>
+                        </div>
+                    </div>
+
+                    <div class="p-4 border-t border-gray-200">
+                        <form id="chatForm">
+                            <div class="flex gap-2">
+                                <input 
+                                    type="text" 
+                                    class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                                    id="chatInput" 
+                                    placeholder="Send a message..." 
+                                    autocomplete="off"
+                                >
+                                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition" type="submit">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </form>
+                        <small class="text-xs text-gray-500 mt-2 block">Be respectful and follow community guidelines</small>
+                    </div>
+                </div>
+
+                <!-- Related Streams -->
+                <div class="mt-6 bg-white rounded-lg p-4 border border-gray-200">
+                    <h6 class="font-bold mb-4"><i class="fas fa-stream mr-2 text-blue-600"></i>Related Streams</h6>
+                    <div class="space-y-4">
+                        <div class="flex gap-3">
+                            <div class="relative w-32 aspect-video bg-gradient-to-br from-purple-500 to-purple-700 rounded flex-shrink-0">
+                                <div class="absolute top-1 left-1 bg-red-600 text-white px-2 py-0.5 rounded text-xs font-bold flex items-center gap-1">
+                                    <span class="w-1.5 h-1.5 bg-white rounded-full pulse-dot"></span>
+                                    LIVE
+                                </div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="font-semibold text-sm truncate">React Tutorial Series</div>
+                                <div class="text-xs text-gray-600">CodeAcademy</div>
+                                <div class="text-xs text-gray-600"><i class="fas fa-eye mr-1"></i>1.2K viewers</div>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-3">
+                            <div class="relative w-32 aspect-video bg-gradient-to-br from-pink-500 to-red-500 rounded flex-shrink-0">
+                                <div class="absolute top-1 left-1 bg-red-600 text-white px-2 py-0.5 rounded text-xs font-bold flex items-center gap-1">
+                                    <span class="w-1.5 h-1.5 bg-white rounded-full pulse-dot"></span>
+                                    LIVE
+                                </div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="font-semibold text-sm truncate">JavaScript Deep Dive</div>
+                                <div class="text-xs text-gray-600">JSMaster</div>
+                                <div class="text-xs text-gray-600"><i class="fas fa-eye mr-1"></i>856 viewers</div>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-3">
+                            <div class="relative w-32 aspect-video bg-gradient-to-br from-cyan-400 to-cyan-600 rounded flex-shrink-0">
+                                <div class="absolute top-1 left-1 bg-red-600 text-white px-2 py-0.5 rounded text-xs font-bold flex items-center gap-1">
+                                    <span class="w-1.5 h-1.5 bg-white rounded-full pulse-dot"></span>
+                                    LIVE
+                                </div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="font-semibold text-sm truncate">CSS Animation Magic</div>
+                                <div class="text-xs text-gray-600">DesignPro</div>
+                                <div class="text-xs text-gray-600"><i class="fas fa-eye mr-1"></i>634 viewers</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white py-8 mt-16 border-t border-gray-200">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="text-gray-600 mb-4 md:mb-0">&copy; 2026 WaterCast. All rights reserved.</p>
+          <div class="flex gap-6">
+            <a href="#" class="text-gray-600 hover:text-blue-600 transition">Privacy</a>
+            <a href="#" class="text-gray-600 hover:text-blue-600 transition">Terms</a>
+            <a href="#" class="text-gray-600 hover:text-blue-600 transition">Support</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./js/watch.js"></script>
+</body>
+</html>
