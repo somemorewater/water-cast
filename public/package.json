@@ -10,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.27.0",
-  "devDependencies": {
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.18",
     "tailwindcss": "^4.1.18"
   }
 }
