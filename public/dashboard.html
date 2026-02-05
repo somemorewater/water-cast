@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WaterCast - Creator Dashboard</title>
+    <link rel="shortcut icon" href="./img/logo.webp" type="image/x-icon" />
+    <link rel="stylesheet" href="./src/output.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body class="font-sans text-gray-900 bg-gray-50">
+    <div class="min-h-screen md:flex">
+      <!-- Sidebar -->
+      <aside
+        class="hidden md:flex md:flex-col md:w-72 bg-white border-r border-gray-200 sticky top-0 h-screen"
+      >
+        <div class="px-6 py-6 border-b border-gray-100">
+          <a href="./index.html" class="flex items-center gap-2">
+            <img class="h-12 w-auto" src="./img/logo.webp" alt="" />
+            <img class="h-6 w-auto" src="./img/watercast-text.webp" alt="WaterCast" />
+          </a>
+        </div>
+
+        <div class="px-4 py-6 space-y-3">
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg bg-blue-50 text-blue-600 font-semibold"
+            href="./dashboard.html"
+          >
+            <i class="fas fa-chart-line"></i>
+            Dashboard
+          </a>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition"
+            href="./schedule.html"
+          >
+            <i class="fas fa-calendar"></i>
+            Schedule
+          </a>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition"
+            href="./notifications.html"
+          >
+            <i class="fas fa-bell"></i>
+            Notifications
+          </a>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition"
+            href="./settings.html"
+          >
+            <i class="fas fa-gear"></i>
+            Settings
+          </a>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition"
+            href="./go-live.html"
+          >
+            <i class="fas fa-broadcast-tower"></i>
+            Go Live
+          </a>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition"
+            href="./watch.html"
+          >
+            <i class="fas fa-play-circle"></i>
+            Watch
+          </a>
+        </div>
+
+        <div class="mt-auto px-6 pb-6 space-y-4">
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg border border-gray-200 text-gray-700 hover:bg-white transition"
+            href="./settings.html"
+          >
+            <i class="fas fa-user"></i>
+            Account
+          </a>
+          <a
+            class="flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
+            href="./login.html"
+          >
+            <i class="fas fa-right-from-bracket"></i>
+            Log Out
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <div class="flex-1">
+        <!-- Mobile Top Bar -->
+        <div class="md:hidden bg-white border-b border-gray-200 sticky top-0 z-40">
+          <div class="px-4 py-4 flex items-center justify-between">
+            <a href="./index.html" class="flex items-center gap-2">
+              <img class="h-10 w-auto" src="./img/logo.webp" alt="" />
+              <img class="h-5 w-auto" src="./img/watercast-text.webp" alt="WaterCast" />
+            </a>
+            <button class="text-gray-700" id="mobileMenuBtn">
+              <i class="fas fa-bars text-xl"></i>
+            </button>
+          </div>
+          <div class="hidden px-4 pb-4" id="mobileMenu">
+            <form class="mb-4" role="search">
+              <input
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                type="search"
+                placeholder="Search dashboard"
+              />
+            </form>
+            <div class="flex flex-col space-y-2">
+              <a class="text-blue-600 font-semibold py-2" href="./dashboard.html">Dashboard</a>
+              <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./schedule.html">Schedule</a>
+              <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./notifications.html">Notifications</a>
+              <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./settings.html">Settings</a>
+              <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./go-live.html">Go Live</a>
+              <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./watch.html">Watch</a>
+              <a
+                class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-semibold text-center"
+                href="./login.html"
+                >Log Out</a
+              >
+            </div>
+          </div>
+        </div>
+
+    <!-- Dashboard Header -->
+    <section class="py-8 md:py-12">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+          <div>
+            <p class="text-sm uppercase tracking-[0.3em] text-blue-600 font-semibold">
+              Creator Dashboard
+            </p>
+            <h1 class="text-4xl md:text-5xl font-bold leading-tight mt-2">
+              Welcome back, Kai.
+            </h1>
+            <p class="text-lg text-gray-600 mt-2">
+              Your channel momentum is up 14% this week. Keep the streak alive.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <a
+              class="px-5 py-3 rounded-lg border border-gray-300 text-gray-700 font-semibold hover:bg-white transition"
+              href="./schedule.html"
+            >
+              <i class="fas fa-calendar mr-2"></i>Schedule Stream
+            </a>
+            <a
+              class="px-6 py-3 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
+              href="./go-live.html"
+            >
+              <i class="fas fa-broadcast-tower mr-2"></i>Go Live Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="pb-10">
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+          <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+            <div class="flex items-center justify-between">
+              <p class="text-sm font-semibold text-gray-500">Live Viewers</p>
+              <span class="h-9 w-9 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center">
+                <i class="fas fa-users"></i>
+              </span>
+            </div>
+            <h2 class="text-3xl font-bold mt-4">1,842</h2>
+            <p class="text-sm text-green-600 mt-2">
+              <i class="fas fa-arrow-up"></i> 12% since yesterday
+            </p>
+          </div>
+          <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+            <div class="flex items-center justify-between">
+              <p class="text-sm font-semibold text-gray-500">Subscribers</p>
+              <span class="h-9 w-9 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center">
+                <i class="fas fa-star"></i>
+              </span>
+            </div>
+            <h2 class="text-3xl font-bold mt-4">24.3k</h2>
+            <p class="text-sm text-green-600 mt-2">
+              <i class="fas fa-arrow-up"></i> 840 new this week
+            </p>
+          </div>
+          <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+            <div class="flex items-center justify-between">
+              <p class="text-sm font-semibold text-gray-500">Stream Hours</p>
+              <span class="h-9 w-9 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                <i class="fas fa-clock"></i>
+              </span>
+            </div>
+            <h2 class="text-3xl font-bold mt-4">18.6</h2>
+            <p class="text-sm text-gray-500 mt-2">2.5 hours scheduled</p>
+          </div>
+          <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+            <div class="flex items-center justify-between">
+              <p class="text-sm font-semibold text-gray-500">Revenue</p>
+              <span class="h-9 w-9 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center">
+                <i class="fas fa-wallet"></i>
+              </span>
+            </div>
+            <h2 class="text-3xl font-bold mt-4">$3,980</h2>
+            <p class="text-sm text-green-600 mt-2">
+              <i class="fas fa-arrow-up"></i> +$540 this week
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Grid -->
+    <section class="pb-16">
+      <div class="container mx-auto px-4">
+        <div class="grid xl:grid-cols-3 gap-6">
+          <!-- Left Column -->
+          <div class="xl:col-span-2 space-y-6">
+            <div class="bg-white border border-gray-200 rounded-xl p-6">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-xl font-bold">Recent Streams</h3>
+                <button
+                  class="text-blue-600 font-semibold hover:text-blue-700"
+                  type="button"
+                >
+                  View all
+                </button>
+              </div>
+              <div class="space-y-4">
+                <div
+                  class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-4 rounded-lg border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition"
+                >
+                  <div class="flex items-center gap-4">
+                    <div class="h-16 w-24 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-semibold">
+                      LIVE
+                    </div>
+                    <div>
+                      <p class="font-semibold">Midnight Coding Session</p>
+                      <p class="text-sm text-gray-500">2h 12m • 9,420 views</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="text-xs font-semibold uppercase px-3 py-1 rounded-full bg-green-50 text-green-600">
+                      Completed
+                    </span>
+                    <button
+                      class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-semibold text-gray-700 hover:bg-white"
+                      type="button"
+                    >
+                      Analytics
+                    </button>
+                  </div>
+                </div>
+                <div
+                  class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-4 rounded-lg border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition"
+                >
+                  <div class="flex items-center gap-4">
+                    <div class="h-16 w-24 rounded-lg bg-gradient-to-br from-rose-500 to-orange-500 flex items-center justify-center text-white font-semibold">
+                      VOD
+                    </div>
+                    <div>
+                      <p class="font-semibold">Studio Tour + Gear Setup</p>
+                      <p class="text-sm text-gray-500">58m • 5,102 views</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="text-xs font-semibold uppercase px-3 py-1 rounded-full bg-blue-50 text-blue-600">
+                      Highlighted
+                    </span>
+                    <button
+                      class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-semibold text-gray-700 hover:bg-white"
+                      type="button"
+                    >
+                      Share
+                    </button>
+                  </div>
+                </div>
+                <div
+                  class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-4 rounded-lg border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition"
+                >
+                  <div class="flex items-center gap-4">
+                    <div class="h-16 w-24 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center text-white font-semibold">
+                      PREP
+                    </div>
+                    <div>
+                      <p class="font-semibold">Community Q&A</p>
+                      <p class="text-sm text-gray-500">Scheduled • Today 7:30 PM</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="text-xs font-semibold uppercase px-3 py-1 rounded-full bg-amber-50 text-amber-600">
+                      Upcoming
+                    </span>
+                    <button
+                      class="px-4 py-2 rounded-lg bg-blue-600 text-sm font-semibold text-white hover:bg-blue-700"
+                      type="button"
+                    >
+                      Edit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-xl p-6">
+              <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-bold">Audience Growth</h3>
+                <div class="flex items-center gap-2">
+                  <button
+                    class="px-3 py-1.5 rounded-lg bg-blue-600 text-white text-xs font-semibold"
+                    type="button"
+                  >
+                    7D
+                  </button>
+                  <button
+                    class="px-3 py-1.5 rounded-lg border border-gray-200 text-xs font-semibold text-gray-600"
+                    type="button"
+                  >
+                    30D
+                  </button>
+                  <button
+                    class="px-3 py-1.5 rounded-lg border border-gray-200 text-xs font-semibold text-gray-600"
+                    type="button"
+                  >
+                    90D
+                  </button>
+                </div>
+              </div>
+              <div class="grid md:grid-cols-2 gap-6">
+                <div class="p-4 rounded-xl bg-gradient-to-br from-blue-50 to-white border border-blue-100">
+                  <p class="text-sm text-gray-500">New Followers</p>
+                  <p class="text-3xl font-bold mt-2">+2,380</p>
+                  <p class="text-sm text-green-600 mt-2">
+                    <i class="fas fa-arrow-up"></i> 22% increase
+                  </p>
+                </div>
+                <div class="p-4 rounded-xl bg-gradient-to-br from-emerald-50 to-white border border-emerald-100">
+                  <p class="text-sm text-gray-500">Average Watch Time</p>
+                  <p class="text-3xl font-bold mt-2">31m 14s</p>
+                  <p class="text-sm text-gray-600 mt-2">Strong retention</p>
+                </div>
+              </div>
+              <div class="mt-6 h-32 rounded-xl bg-gradient-to-r from-blue-100 via-white to-purple-100 border border-gray-100 flex items-center justify-center text-gray-500">
+                Analytics visualization placeholder
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div class="space-y-6">
+            <div class="bg-white border border-gray-200 rounded-xl p-6">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-xl font-bold">Notifications</h3>
+                <div class="flex items-center gap-3">
+                  <span class="text-xs uppercase tracking-widest text-blue-600 font-semibold">Live</span>
+                  <a
+                    class="text-sm font-semibold text-blue-600 hover:text-blue-700"
+                    href="./notifications.html"
+                    >View all</a
+                  >
+                </div>
+              </div>
+              <div class="space-y-4">
+                <div class="flex items-start gap-3">
+                  <span class="h-9 w-9 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center">
+                    <i class="fas fa-bell"></i>
+                  </span>
+                  <div>
+                    <p class="font-semibold">New raid from StreamForge</p>
+                    <p class="text-sm text-gray-500">+120 viewers joined your chat.</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="h-9 w-9 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center">
+                    <i class="fas fa-heart"></i>
+                  </span>
+                  <div>
+                    <p class="font-semibold">Membership milestone</p>
+                    <p class="text-sm text-gray-500">You reached 24k subscribers.</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="h-9 w-9 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center">
+                    <i class="fas fa-bolt"></i>
+                  </span>
+                  <div>
+                    <p class="font-semibold">Stream health</p>
+                    <p class="text-sm text-gray-500">Bitrate stable. No frame drops.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-xl p-6">
+              <h3 class="text-xl font-bold mb-4">Next Stream Plan</h3>
+              <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="font-semibold">Community Q&A</p>
+                    <p class="text-sm text-gray-500">Today • 7:30 PM</p>
+                  </div>
+                  <span class="text-xs font-semibold uppercase px-3 py-1 rounded-full bg-blue-50 text-blue-600">Live</span>
+                </div>
+                <div class="border border-dashed border-gray-200 rounded-lg p-4">
+                  <p class="text-sm text-gray-500">Prep Checklist</p>
+                  <div class="mt-3 space-y-2 text-sm">
+                    <label class="flex items-center gap-2">
+                      <input type="checkbox" class="accent-blue-600" checked />
+                      Update overlays
+                    </label>
+                    <label class="flex items-center gap-2">
+                      <input type="checkbox" class="accent-blue-600" checked />
+                      Test microphone
+                    </label>
+                    <label class="flex items-center gap-2">
+                      <input type="checkbox" class="accent-blue-600" />
+                      Publish announcement
+                    </label>
+                  </div>
+                </div>
+                <a
+                  class="w-full px-4 py-3 rounded-lg border border-gray-200 text-gray-700 font-semibold hover:bg-white text-center"
+                  href="./schedule.html"
+                >
+                  Manage schedule
+                </a>
+              </div>
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-xl p-6">
+              <h3 class="text-xl font-bold mb-4">Quick Actions</h3>
+              <div class="grid grid-cols-2 gap-3">
+                <button
+                  class="px-3 py-4 rounded-lg bg-blue-600 text-white font-semibold text-sm hover:bg-blue-700"
+                  type="button"
+                >
+                  <i class="fas fa-scissors mr-2"></i>Clip Video
+                </button>
+                <button
+                  class="px-3 py-4 rounded-lg border border-gray-200 text-gray-700 font-semibold text-sm hover:bg-white"
+                  type="button"
+                >
+                  <i class="fas fa-image mr-2"></i>Update Banner
+                </button>
+                <button
+                  class="px-3 py-4 rounded-lg border border-gray-200 text-gray-700 font-semibold text-sm hover:bg-white"
+                  type="button"
+                >
+                  <i class="fas fa-microphone-alt mr-2"></i>Audio Check
+                </button>
+                <button
+                  class="px-3 py-4 rounded-lg border border-gray-200 text-gray-700 font-semibold text-sm hover:bg-white"
+                  type="button"
+                >
+                  <i class="fas fa-comments mr-2"></i>Moderation
+                </button>
+                <a
+                  class="col-span-2 px-3 py-4 rounded-lg border border-gray-200 text-gray-700 font-semibold text-sm hover:bg-white text-center"
+                  href="./settings.html"
+                >
+                  <i class="fas fa-gear mr-2"></i>Open Settings
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="py-10 border-t border-gray-200 bg-white">
+      <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-gray-500 text-sm">© 2026 WaterCast. All rights reserved.</p>
+        <div class="flex items-center gap-4 text-sm text-gray-600">
+          <a class="hover:text-blue-600" href="./index.html">Home</a>
+          <a class="hover:text-blue-600" href="./go-live.html">Go Live</a>
+          <a class="hover:text-blue-600" href="./watch.html">Watch</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+        });
+      }
+    </script>
+      </div>
+    </div>
+  </body>
+</html>

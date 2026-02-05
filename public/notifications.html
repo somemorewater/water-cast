@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WaterCast - Notifications</title>
+    <link rel="shortcut icon" href="./img/logo.webp" type="image/x-icon" />
+    <link rel="stylesheet" href="./src/output.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body class="font-sans text-gray-900 bg-gray-50">
+    <div class="min-h-screen md:flex">
+      <!-- Sidebar -->
+      <aside
+        class="hidden md:flex md:flex-col md:w-72 bg-white border-r border-gray-200 sticky top-0 h-screen"
+      >
+        <div class="px-6 py-6 border-b border-gray-100">
+          <a href="./index.html" class="flex items-center gap-2">
+            <img class="h-12 w-auto" src="./img/logo.webp" alt="" />
+            <img class="h-6 w-auto" src="./img/watercast-text.webp" alt="WaterCast" />
+          </a>
+        </div>
+
+        <div class="px-4 py-6 space-y-3">
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition"
+            href="./dashboard.html"
+          >
+            <i class="fas fa-chart-line"></i>
+            Dashboard
+          </a>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition"
+            href="./schedule.html"
+          >
+            <i class="fas fa-calendar"></i>
+            Schedule
+          </a>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg bg-blue-50 text-blue-600 font-semibold"
+            href="./notifications.html"
+          >
+            <i class="fas fa-bell"></i>
+            Notifications
+          </a>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition"
+            href="./settings.html"
+          >
+            <i class="fas fa-gear"></i>
+            Settings
+          </a>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition"
+            href="./go-live.html"
+          >
+            <i class="fas fa-broadcast-tower"></i>
+            Go Live
+          </a>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition"
+            href="./watch.html"
+          >
+            <i class="fas fa-play-circle"></i>
+            Watch
+          </a>
+        </div>
+
+        <div class="mt-auto px-6 pb-6 space-y-4">
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg border border-gray-200 text-gray-700 hover:bg-white transition"
+            href="./settings.html"
+          >
+            <i class="fas fa-user"></i>
+            Account
+          </a>
+          <a
+            class="flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
+            href="./login.html"
+          >
+            <i class="fas fa-right-from-bracket"></i>
+            Log Out
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <div class="flex-1">
+        <!-- Mobile Top Bar -->
+        <div class="md:hidden bg-white border-b border-gray-200 sticky top-0 z-40">
+          <div class="px-4 py-4 flex items-center justify-between">
+            <a href="./index.html" class="flex items-center gap-2">
+              <img class="h-10 w-auto" src="./img/logo.webp" alt="" />
+              <img class="h-5 w-auto" src="./img/watercast-text.webp" alt="WaterCast" />
+            </a>
+            <button class="text-gray-700" id="mobileMenuBtn">
+              <i class="fas fa-bars text-xl"></i>
+            </button>
+          </div>
+          <div class="hidden px-4 pb-4" id="mobileMenu">
+            <form class="mb-4" role="search">
+              <input
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                type="search"
+                placeholder="Search notifications"
+              />
+            </form>
+            <div class="flex flex-col space-y-2">
+              <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./dashboard.html">Dashboard</a>
+              <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./schedule.html">Schedule</a>
+              <a class="text-blue-600 font-semibold py-2" href="./notifications.html">Notifications</a>
+              <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./settings.html">Settings</a>
+              <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./go-live.html">Go Live</a>
+              <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./watch.html">Watch</a>
+              <a
+                class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-semibold text-center"
+                href="./login.html"
+                >Log Out</a
+              >
+            </div>
+          </div>
+        </div>
+
+    <!-- Header -->
+    <section class="py-10">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+          <div>
+            <p class="text-sm uppercase tracking-[0.3em] text-blue-600 font-semibold">
+              Notifications
+            </p>
+            <h1 class="text-4xl md:text-5xl font-bold mt-2">Stay in the loop</h1>
+            <p class="text-lg text-gray-600 mt-2">
+              Keep track of activity, community highlights, and system updates.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <button
+              class="px-5 py-3 rounded-lg border border-gray-300 text-gray-700 font-semibold hover:bg-white transition"
+              type="button"
+            >
+              Mark all read
+            </button>
+            <a
+              class="px-6 py-3 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
+              href="./settings.html"
+            >
+              <i class="fas fa-sliders-h mr-2"></i>Notification Settings
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section class="pb-16">
+      <div class="container mx-auto px-4">
+        <div class="grid xl:grid-cols-3 gap-6">
+          <div class="xl:col-span-2 space-y-6">
+            <div class="bg-white border border-gray-200 rounded-xl p-6">
+              <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold">Latest</h2>
+                <div class="flex items-center gap-2">
+                  <button
+                    class="px-3 py-1.5 rounded-lg bg-blue-600 text-white text-xs font-semibold"
+                    type="button"
+                  >
+                    All
+                  </button>
+                  <button
+                    class="px-3 py-1.5 rounded-lg border border-gray-200 text-xs font-semibold text-gray-600"
+                    type="button"
+                  >
+                    Mentions
+                  </button>
+                  <button
+                    class="px-3 py-1.5 rounded-lg border border-gray-200 text-xs font-semibold text-gray-600"
+                    type="button"
+                  >
+                    System
+                  </button>
+                </div>
+              </div>
+              <div class="space-y-4">
+                <div class="p-4 rounded-lg border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition">
+                  <div class="flex items-start gap-4">
+                    <span class="h-10 w-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center">
+                      <i class="fas fa-bolt"></i>
+                    </span>
+                    <div class="flex-1">
+                      <p class="font-semibold">Stream health stable</p>
+                      <p class="text-sm text-gray-500">Bitrate is steady, no frame drops in the last 2 hours.</p>
+                      <p class="text-xs text-gray-400 mt-2">Just now</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-4 rounded-lg border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition">
+                  <div class="flex items-start gap-4">
+                    <span class="h-10 w-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center">
+                      <i class="fas fa-heart"></i>
+                    </span>
+                    <div class="flex-1">
+                      <p class="font-semibold">New subscriber milestone</p>
+                      <p class="text-sm text-gray-500">You reached 24k subscribers. Time to celebrate.</p>
+                      <p class="text-xs text-gray-400 mt-2">15 minutes ago</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-4 rounded-lg border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition">
+                  <div class="flex items-start gap-4">
+                    <span class="h-10 w-10 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center">
+                      <i class="fas fa-comment"></i>
+                    </span>
+                    <div class="flex-1">
+                      <p class="font-semibold">New mention in chat</p>
+                      <p class="text-sm text-gray-500">@Kai can you demo the new overlay pack?</p>
+                      <p class="text-xs text-gray-400 mt-2">42 minutes ago</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-4 rounded-lg border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition">
+                  <div class="flex items-start gap-4">
+                    <span class="h-10 w-10 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center">
+                      <i class="fas fa-users"></i>
+                    </span>
+                    <div class="flex-1">
+                      <p class="font-semibold">Raid incoming</p>
+                      <p class="text-sm text-gray-500">StreamForge is sending 120 viewers to your channel.</p>
+                      <p class="text-xs text-gray-400 mt-2">1 hour ago</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-xl p-6">
+              <h2 class="text-xl font-bold mb-4">Notification Digest</h2>
+              <div class="grid md:grid-cols-3 gap-4 text-sm">
+                <div class="p-4 rounded-lg bg-blue-50 border border-blue-100">
+                  <p class="text-gray-500">Mentions</p>
+                  <p class="text-2xl font-bold mt-2">18</p>
+                  <p class="text-xs text-gray-500 mt-2">Last 7 days</p>
+                </div>
+                <div class="p-4 rounded-lg bg-emerald-50 border border-emerald-100">
+                  <p class="text-gray-500">New followers</p>
+                  <p class="text-2xl font-bold mt-2">320</p>
+                  <p class="text-xs text-gray-500 mt-2">Last 7 days</p>
+                </div>
+                <div class="p-4 rounded-lg bg-amber-50 border border-amber-100">
+                  <p class="text-gray-500">Moderation</p>
+                  <p class="text-2xl font-bold mt-2">7</p>
+                  <p class="text-xs text-gray-500 mt-2">Alerts handled</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="space-y-6">
+            <div class="bg-white border border-gray-200 rounded-xl p-6">
+              <h3 class="text-xl font-bold mb-4">Quick Actions</h3>
+              <div class="space-y-3">
+                <button
+                  class="w-full px-4 py-3 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700"
+                  type="button"
+                >
+                  Send community update
+                </button>
+                <button
+                  class="w-full px-4 py-3 rounded-lg border border-gray-200 text-gray-700 font-semibold hover:bg-white"
+                  type="button"
+                >
+                  Review moderation queue
+                </button>
+                <a
+                  class="w-full px-4 py-3 rounded-lg border border-gray-200 text-gray-700 font-semibold hover:bg-white text-center"
+                  href="./schedule.html"
+                >
+                  Update stream schedule
+                </a>
+              </div>
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-xl p-6">
+              <h3 class="text-xl font-bold mb-4">Preferences</h3>
+              <p class="text-sm text-gray-600 mb-4">
+                Choose what triggers an alert and how you receive it.
+              </p>
+              <a
+                class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700"
+                href="./settings.html"
+              >
+                Manage settings <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <footer class="py-10 border-t border-gray-200 bg-white">
+      <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-gray-500 text-sm">© 2026 WaterCast. All rights reserved.</p>
+        <div class="flex items-center gap-4 text-sm text-gray-600">
+          <a class="hover:text-blue-600" href="./dashboard.html">Dashboard</a>
+          <a class="hover:text-blue-600" href="./schedule.html">Schedule</a>
+          <a class="hover:text-blue-600" href="./settings.html">Settings</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+        });
+      }
+    </script>
+      </div>
+    </div>
+  </body>
+</html>

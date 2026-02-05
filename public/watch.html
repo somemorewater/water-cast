@@ -29,28 +29,80 @@
     </style>
 </head>
 <body class="font-sans text-gray-900 bg-gray-50">
-    <!-- Navigation -->
-    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
-      <div class="container mx-auto px-4">
-        <div class="flex items-center justify-between h-16">
-          <a href="./index.html" class="flex items-center">
-            <img class="h-16 w-auto" src="./img/logo.webp" alt="">
-            <img class="h-8 w-auto" src="./img/watercast-text.webp" alt="WaterCast" />
-          </a>
-          
-          <button class="md:hidden text-gray-700" id="mobileMenuBtn">
-            <i class="fas fa-bars text-xl"></i>
-          </button>
-          
-          <div class="hidden md:flex items-center space-x-6">
-            <a class="text-gray-700 hover:text-blue-600 font-medium transition" href="index.html">Home</a>
-            <a class="text-gray-700 hover:text-blue-600 font-medium transition" href="go-live.html">Go Live</a>
-            <a class="text-gray-700 hover:text-blue-600 font-medium transition" href="login.html">Login</a>
-            <a class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-semibold" href="signup.html">Sign Up</a>
-          </div>
-        </div>
-      </div>
-    </nav>
+    <div class="min-h-screen md:flex">
+        <!-- Sidebar -->
+        <aside class="hidden md:flex md:flex-col md:w-72 bg-white border-r border-gray-200 sticky top-0 h-screen">
+            <div class="px-6 py-6 border-b border-gray-100">
+                <a href="./index.html" class="flex items-center gap-2">
+                    <img class="h-12 w-auto" src="./img/logo.webp" alt="">
+                    <img class="h-6 w-auto" src="./img/watercast-text.webp" alt="WaterCast">
+                </a>
+            </div>
+            <div class="px-4 py-6 space-y-3">
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition" href="./dashboard.html">
+                    <i class="fas fa-chart-line"></i>
+                    Dashboard
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition" href="./schedule.html">
+                    <i class="fas fa-calendar"></i>
+                    Schedule
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition" href="./notifications.html">
+                    <i class="fas fa-bell"></i>
+                    Notifications
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition" href="./settings.html">
+                    <i class="fas fa-gear"></i>
+                    Settings
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition" href="./go-live.html">
+                    <i class="fas fa-broadcast-tower"></i>
+                    Go Live
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-blue-50 text-blue-600 font-semibold" href="./watch.html">
+                    <i class="fas fa-play-circle"></i>
+                    Watch
+                </a>
+            </div>
+            <div class="mt-auto px-6 pb-6 space-y-4">
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg border border-gray-200 text-gray-700 hover:bg-white transition" href="./settings.html">
+                    <i class="fas fa-user"></i>
+                    Account
+                </a>
+                <a class="flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition" href="./login.html">
+                    <i class="fas fa-right-from-bracket"></i>
+                    Log Out
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-1">
+            <!-- Mobile Top Bar -->
+            <div class="md:hidden bg-white border-b border-gray-200 sticky top-0 z-40">
+                <div class="px-4 py-4 flex items-center justify-between">
+                    <a href="./index.html" class="flex items-center gap-2">
+                        <img class="h-10 w-auto" src="./img/logo.webp" alt="">
+                        <img class="h-5 w-auto" src="./img/watercast-text.webp" alt="WaterCast">
+                    </a>
+                    <button class="text-gray-700" id="mobileMenuBtn">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+                <div class="hidden px-4 pb-4" id="mobileMenu">
+                    <div class="flex flex-col space-y-2">
+                        <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./dashboard.html">Dashboard</a>
+                        <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./schedule.html">Schedule</a>
+                        <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./notifications.html">Notifications</a>
+                        <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./settings.html">Settings</a>
+                        <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./go-live.html">Go Live</a>
+                        <a class="text-blue-600 font-semibold py-2" href="./watch.html">Watch</a>
+                        <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./index.html">Home</a>
+                        <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./login.html">Login</a>
+                        <a class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-semibold text-center" href="./signup.html">Sign Up</a>
+                    </div>
+                </div>
+            </div>
 
     <!-- Main Content -->
     <div class="container-fluid px-4 py-6">
@@ -250,5 +302,17 @@
     </footer>
 
     <script src="./js/watch.js"></script>
+    <script>
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+        });
+      }
+    </script>
+        </div>
+    </div>
 </body>
 </html>

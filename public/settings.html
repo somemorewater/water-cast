@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WaterCast - Settings</title>
+    <link rel="shortcut icon" href="./img/logo.webp" type="image/x-icon" />
+    <link rel="stylesheet" href="./src/output.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body class="font-sans text-gray-900 bg-gray-50">
+    <div class="min-h-screen md:flex">
+      <!-- Sidebar -->
+      <aside
+        class="hidden md:flex md:flex-col md:w-72 bg-white border-r border-gray-200 sticky top-0 h-screen"
+      >
+        <div class="px-6 py-6 border-b border-gray-100">
+          <a href="./index.html" class="flex items-center gap-2">
+            <img class="h-12 w-auto" src="./img/logo.webp" alt="" />
+            <img class="h-6 w-auto" src="./img/watercast-text.webp" alt="WaterCast" />
+          </a>
+        </div>
+
+        <div class="px-4 py-6 space-y-3">
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition"
+            href="./dashboard.html"
+          >
+            <i class="fas fa-chart-line"></i>
+            Dashboard
+          </a>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition"
+            href="./schedule.html"
+          >
+            <i class="fas fa-calendar"></i>
+            Schedule
+          </a>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition"
+            href="./notifications.html"
+          >
+            <i class="fas fa-bell"></i>
+            Notifications
+          </a>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg bg-blue-50 text-blue-600 font-semibold"
+            href="./settings.html"
+          >
+            <i class="fas fa-gear"></i>
+            Settings
+          </a>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition"
+            href="./go-live.html"
+          >
+            <i class="fas fa-broadcast-tower"></i>
+            Go Live
+          </a>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition"
+            href="./watch.html"
+          >
+            <i class="fas fa-play-circle"></i>
+            Watch
+          </a>
+        </div>
+
+        <div class="mt-auto px-6 pb-6 space-y-4">
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg border border-gray-200 text-gray-700 hover:bg-white transition"
+            href="./settings.html"
+          >
+            <i class="fas fa-user"></i>
+            Account
+          </a>
+          <a
+            class="flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
+            href="./login.html"
+          >
+            <i class="fas fa-right-from-bracket"></i>
+            Log Out
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <div class="flex-1">
+        <!-- Mobile Top Bar -->
+        <div class="md:hidden bg-white border-b border-gray-200 sticky top-0 z-40">
+          <div class="px-4 py-4 flex items-center justify-between">
+            <a href="./index.html" class="flex items-center gap-2">
+              <img class="h-10 w-auto" src="./img/logo.webp" alt="" />
+              <img class="h-5 w-auto" src="./img/watercast-text.webp" alt="WaterCast" />
+            </a>
+            <button class="text-gray-700" id="mobileMenuBtn">
+              <i class="fas fa-bars text-xl"></i>
+            </button>
+          </div>
+          <div class="hidden px-4 pb-4" id="mobileMenu">
+            <form class="mb-4" role="search">
+              <input
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                type="search"
+                placeholder="Search settings"
+              />
+            </form>
+            <div class="flex flex-col space-y-2">
+              <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./dashboard.html">Dashboard</a>
+              <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./schedule.html">Schedule</a>
+              <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./notifications.html">Notifications</a>
+              <a class="text-blue-600 font-semibold py-2" href="./settings.html">Settings</a>
+              <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./go-live.html">Go Live</a>
+              <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./watch.html">Watch</a>
+              <a
+                class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-semibold text-center"
+                href="./login.html"
+                >Log Out</a
+              >
+            </div>
+          </div>
+        </div>
+
+    <!-- Header -->
+    <section class="py-10">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+          <div>
+            <p class="text-sm uppercase tracking-[0.3em] text-blue-600 font-semibold">
+              Settings
+            </p>
+            <h1 class="text-4xl md:text-5xl font-bold mt-2">Your streaming hub</h1>
+            <p class="text-lg text-gray-600 mt-2">
+              Customize your channel, alerts, and streaming preferences.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <button
+              class="px-5 py-3 rounded-lg border border-gray-300 text-gray-700 font-semibold hover:bg-white transition"
+              type="button"
+            >
+              Restore defaults
+            </button>
+            <button
+              class="px-6 py-3 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
+              type="button"
+            >
+              Save changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section class="pb-16">
+      <div class="container mx-auto px-4">
+        <div class="grid xl:grid-cols-3 gap-6">
+          <div class="xl:col-span-2 space-y-6">
+            <div class="bg-white border border-gray-200 rounded-xl p-6">
+              <h2 class="text-xl font-bold mb-4">Profile</h2>
+              <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label class="text-sm font-semibold text-gray-600">Display Name</label>
+                  <input
+                    class="mt-2 w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    type="text"
+                    placeholder="Kai Rivera"
+                  />
+                </div>
+                <div>
+                  <label class="text-sm font-semibold text-gray-600">Handle</label>
+                  <input
+                    class="mt-2 w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    type="text"
+                    placeholder="@kai"
+                  />
+                </div>
+                <div class="md:col-span-2">
+                  <label class="text-sm font-semibold text-gray-600">Bio</label>
+                  <textarea
+                    class="mt-2 w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    rows="3"
+                    placeholder="Tell viewers about your stream"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-xl p-6">
+              <h2 class="text-xl font-bold mb-4">Stream Defaults</h2>
+              <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label class="text-sm font-semibold text-gray-600">Default Category</label>
+                  <select
+                    class="mt-2 w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option>Tech & Coding</option>
+                    <option>Just Chatting</option>
+                    <option>Music</option>
+                    <option>Gaming</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="text-sm font-semibold text-gray-600">Default Visibility</label>
+                  <select
+                    class="mt-2 w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option>Public</option>
+                    <option>Subscribers Only</option>
+                    <option>Private</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="text-sm font-semibold text-gray-600">Stream Quality</label>
+                  <select
+                    class="mt-2 w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option>1080p (Recommended)</option>
+                    <option>720p</option>
+                    <option>480p</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="text-sm font-semibold text-gray-600">Auto-record</label>
+                  <div class="mt-3 flex items-center gap-3">
+                    <input type="checkbox" class="accent-blue-600" checked />
+                    <span class="text-sm text-gray-600">Save streams as VOD</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-xl p-6">
+              <h2 class="text-xl font-bold mb-4">Notification Preferences</h2>
+              <div class="space-y-4 text-sm text-gray-600">
+                <label class="flex items-center justify-between">
+                  <span>Viewer milestones</span>
+                  <input type="checkbox" class="accent-blue-600" checked />
+                </label>
+                <label class="flex items-center justify-between">
+                  <span>Mentions and highlights</span>
+                  <input type="checkbox" class="accent-blue-600" checked />
+                </label>
+                <label class="flex items-center justify-between">
+                  <span>System health alerts</span>
+                  <input type="checkbox" class="accent-blue-600" checked />
+                </label>
+                <label class="flex items-center justify-between">
+                  <span>Weekly digest email</span>
+                  <input type="checkbox" class="accent-blue-600" />
+                </label>
+              </div>
+              <div class="mt-4">
+                <a
+                  class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700"
+                  href="./notifications.html"
+                >
+                  View notification center <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-xl p-6">
+              <h2 class="text-xl font-bold mb-4">Privacy & Safety</h2>
+              <div class="space-y-4 text-sm text-gray-600">
+                <label class="flex items-center justify-between">
+                  <span>Enable follower-only chat</span>
+                  <input type="checkbox" class="accent-blue-600" />
+                </label>
+                <label class="flex items-center justify-between">
+                  <span>Require verified email for chat</span>
+                  <input type="checkbox" class="accent-blue-600" checked />
+                </label>
+                <label class="flex items-center justify-between">
+                  <span>Auto-moderation</span>
+                  <input type="checkbox" class="accent-blue-600" checked />
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <aside class="space-y-6">
+            <div class="bg-white border border-gray-200 rounded-xl p-6">
+              <h3 class="text-xl font-bold mb-4">Account</h3>
+              <div class="space-y-3 text-sm text-gray-600">
+                <div class="flex items-center justify-between">
+                  <span>Plan</span>
+                  <span class="font-semibold text-gray-900">Creator Pro</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Billing cycle</span>
+                  <span class="font-semibold text-gray-900">Monthly</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Next charge</span>
+                  <span class="font-semibold text-gray-900">$29 • Mar 2</span>
+                </div>
+              </div>
+              <button
+                class="w-full mt-4 px-4 py-3 rounded-lg border border-gray-200 text-gray-700 font-semibold hover:bg-white"
+                type="button"
+              >
+                Manage billing
+              </button>
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-xl p-6">
+              <h3 class="text-xl font-bold mb-4">Support</h3>
+              <p class="text-sm text-gray-600 mb-4">
+                Need help tuning your setup? We have a guide ready.
+              </p>
+              <a
+                class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700"
+                href="./dashboard.html"
+              >
+                Return to dashboard <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <footer class="py-10 border-t border-gray-200 bg-white">
+      <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-gray-500 text-sm">© 2026 WaterCast. All rights reserved.</p>
+        <div class="flex items-center gap-4 text-sm text-gray-600">
+          <a class="hover:text-blue-600" href="./dashboard.html">Dashboard</a>
+          <a class="hover:text-blue-600" href="./schedule.html">Schedule</a>
+          <a class="hover:text-blue-600" href="./notifications.html">Notifications</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+        });
+      }
+    </script>
+      </div>
+    </div>
+  </body>
+</html>
