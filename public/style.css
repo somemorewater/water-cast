@@ -24,3 +24,22 @@ position: relative;
 .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
 background: #4F46E5 !important;
 }
+
+@media (max-width: 767px) {
+  .mobile-sidebar {
+    transition: width 0.2s ease;
+  }
+
+  body.mobile-nav-hidden .mobile-sidebar {
+    width: 0 !important;
+    border-right-width: 0;
+  }
+
+  body.mobile-nav-hidden .mobile-sidebar * {
+    visibility: hidden;
+  }
+
+  body.mobile-nav-hidden .mobile-main {
+    padding-left: 0 !important;
+  }
+}
