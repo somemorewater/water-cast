@@ -1,4 +1,4 @@
-// Go Live Page Functionality
+
 let isLive = false;
 let streamTimer = null;
 let streamDurationSeconds = 0;
