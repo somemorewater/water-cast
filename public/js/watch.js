@@ -1,4 +1,4 @@
-// Watch Stream Page Functionality
+
 let isPlaying = true;
 let isMuted = false;
 let viewerCount = 2347;

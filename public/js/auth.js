@@ -1,4 +1,4 @@
-// Authentication Page Functionality
+
 
 // Login Form
 const loginForm = document.getElementById("loginForm");
