@@ -22,10 +22,10 @@ body {
 }
 
 /* ========================================
-   MOBILE-FIRST LAYOUT (< 768px)
+   MOBILE-FIRST LAYOUT (< 1024px)
    ======================================== */
 
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   /* Hide desktop sidebar completely */
   .mobile-sidebar,
   .desktop-sidebar {
@@ -76,14 +76,6 @@ body {
   }
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
-  .container,
-  .container-fluid {
-    padding-left: 1.5rem !important;
-    padding-right: 1.5rem !important;
-  }
-}
-
 /* ========================================
    MOBILE HEADER (Twitter/X Style)
    ======================================== */
@@ -104,7 +96,7 @@ body {
   padding-top: env(safe-area-inset-top);
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .mobile-header {
     display: flex;
     align-items: center;
@@ -159,7 +151,7 @@ body {
   padding-bottom: env(safe-area-inset-bottom);
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .bottom-nav {
     display: block;
   }
@@ -250,7 +242,7 @@ body {
    FULL-WIDTH VIDEO PLAYER
    ======================================== */
 
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .video-section {
     width: 100vw;
     margin-left: calc(-50vw + 50%);
@@ -903,10 +895,10 @@ body {
 }
 
 /* ========================================
-   DESKTOP STYLES (> 768px)
+   DESKTOP STYLES (> 1024px)
    ======================================== */
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .mobile-header,
   .bottom-nav,
   .chat-preview {
