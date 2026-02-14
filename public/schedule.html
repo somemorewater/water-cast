@@ -14,14 +14,6 @@
   </head>
   <body class="font-sans text-gray-900 bg-gray-50">
     <div class="min-h-screen md:flex">
-      <button
-        class="md:hidden fixed top-4 left-4 z-50 h-11 w-11 rounded-full bg-white border border-gray-200 shadow-sm text-gray-700 flex items-center justify-center"
-        id="mobileNavToggle"
-        type="button"
-        aria-label="Toggle navigation"
-      >
-        <i class="fas fa-bars"></i>
-      </button>
       <!-- Sidebar -->
       <aside
         class="mobile-sidebar flex flex-col w-16 md:w-72 bg-white border-r border-gray-200 sticky top-0 h-screen"
@@ -112,11 +104,19 @@
               <img class="h-10 w-auto" src="./img/logo.webp" alt="" />
               <img class="h-5 w-auto" src="./img/watercast-text.webp" alt="WaterCast" />
             </a>
-            <button class="text-gray-700" id="mobileMenuBtn">
+            <button class="top-4 left-4 h-11 w-11 rounded-full bg-white border border-gray-200 shadow-sm text-gray-700 flex items-center justify-center" id="mobileMenuBtn">
               <i class="fas fa-bars text-xl"></i>
             </button>
           </div>
-          <div class="hidden px-4 pb-4" id="mobileMenu">
+          <div class="hidden fixed inset-0 z-50 md:hidden" id="mobileMenu">
+            <div class="absolute inset-0 bg-transparent bg-opacity-200" data-mobile-close></div>
+            <div class="relative h-full w-72 bg-white shadow-xl p-4 overflow-y-auto">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-semibold text-gray-500 uppercase tracking-[0.3em]">Menu</span>
+                <button class="text-gray-600" type="button" id="mobileMenuCloseBtn">
+                  <i class="fas fa-xmark text-xl"></i>
+                </button>
+              </div>
             <form class="mb-4" role="search">
               <input
                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -125,6 +125,7 @@
               />
             </form>
             <div class="flex flex-col space-y-2">
+              <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./index.html">Home</a>
               <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./dashboard.html">Dashboard</a>
               <a class="text-blue-600 font-semibold py-2" href="./schedule.html">Schedule</a>
               <a class="text-gray-700 hover:text-blue-600 font-medium py-2" href="./notifications.html">Notifications</a>
@@ -137,6 +138,7 @@
                 >Log Out</a
               >
             </div>
+          </div>
           </div>
         </div>
 
@@ -390,25 +392,7 @@
       </div>
     </footer>
 
-    <script>
-      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-      const mobileMenu = document.getElementById("mobileMenu");
-
-      if (mobileMenuBtn && mobileMenu) {
-        mobileMenuBtn.addEventListener("click", () => {
-        mobileMenu.classList.toggle("hidden");
-      });
-    }
-    </script>
-    <script>
-      const mobileNavToggle = document.getElementById("mobileNavToggle");
-
-      if (mobileNavToggle) {
-        mobileNavToggle.addEventListener("click", () => {
-          document.body.classList.toggle("mobile-nav-hidden");
-        });
-      }
-    </script>
+    <script src="./js/mobile-menu.js"></script>
       </div>
     </div>
   </body>
