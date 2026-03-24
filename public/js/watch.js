@@ -47,6 +47,10 @@ const updateStreamDetails = async () => {
     }
   } catch (err) {
     console.warn("Unable to load stream details", err);
+    await window.WatercastUI?.alert(
+      "We couldn't find that stream. Taking you back to live streams."
+    );
+    window.location.href = "index.html";
   }
 };
 
@@ -62,6 +66,12 @@ const initUser = async () => {
 };
 
 const initSocket = () => {
+  if (typeof io === "undefined") {
+    window.WatercastUI?.alert(
+      "Socket client failed to load. Please refresh the page or ensure the server is running."
+    );
+    return;
+  }
   socket = io(window.WatercastApi.base);
 
   socket.on("offer", async ({ broadcasterId, sdp }) => {
@@ -223,10 +233,24 @@ function addChatMessage(username, message) {
   const params = new URLSearchParams(window.location.search);
   streamId = params.get("streamId");
   if (!streamId) {
-    await window.WatercastUI?.alert(
-      "Missing stream ID. Return to the home page to pick a live stream."
-    );
-    window.location.href = "index.html";
+    try {
+      const payload = await window.WatercastApi.fetchJson("/api/streams/live");
+      const streams = payload.streams || [];
+      if (streams.length > 0) {
+        window.WatercastUI?.toast("Taking you to the live stream...", "info");
+        window.location.href = `watch.html?streamId=${streams[0].id}`;
+        return;
+      }
+      await window.WatercastUI?.alert(
+        "No live streams right now. Returning to home."
+      );
+      window.location.href = "index.html";
+    } catch (err) {
+      await window.WatercastUI?.alert(
+        "Missing stream ID. Return to the home page to pick a live stream."
+      );
+      window.location.href = "index.html";
+    }
     return;
   }
 

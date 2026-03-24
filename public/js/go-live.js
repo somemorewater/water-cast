@@ -34,6 +34,12 @@ const getStreamPayload = () => ({
 });
 
 const ensureSocket = () => {
+  if (typeof io === "undefined") {
+    window.WatercastUI?.alert(
+      "Socket client failed to load. Please refresh the page or ensure the server is running."
+    );
+    return null;
+  }
   if (socket) return socket;
   const token = window.WatercastApi.getToken();
   socket = io(window.WatercastApi.base, { auth: { token } });
@@ -217,7 +223,9 @@ goLiveBtn.addEventListener("click", async () => {
     if (streamHealthEl) streamHealthEl.textContent = "Connecting...";
 
     const socketInstance = ensureSocket();
-    socketInstance.emit("broadcaster-join", { streamId });
+    if (socketInstance) {
+      socketInstance.emit("broadcaster-join", { streamId });
+    }
     window.WatercastUI?.setButtonLoading(goLiveBtn, false);
   } catch (error) {
     console.error("Go live error:", error);
