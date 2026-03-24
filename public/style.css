@@ -894,6 +894,69 @@ button.is-loading {
   opacity: 0.85;
 }
 
+.wc-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 9999;
+}
+
+.wc-modal {
+  width: min(520px, 95vw);
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.3);
+  border: 1px solid #e5e7eb;
+  padding: 20px;
+}
+
+.wc-modal-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.wc-modal-body {
+  margin-top: 10px;
+  font-size: 15px;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.wc-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.wc-modal-actions button {
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.wc-modal-cancel {
+  background: #fff;
+  border-color: #e5e7eb;
+  color: #374151;
+}
+
+.wc-modal-confirm {
+  background: #2563eb;
+  color: #fff;
+}
+
+.wc-modal-actions button:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
 @keyframes spin {
   to { transform: rotate(360deg); }
 }

@@ -1,8 +1,8 @@
 const loginForm = document.getElementById("loginForm");
 const signupForm = document.getElementById("signupForm");
 
-const showError = (message) => {
-  alert(message);
+const showError = async (message) => {
+  await window.WatercastUI?.alert(message);
 };
 
 if (loginForm) {
@@ -21,13 +21,13 @@ if (loginForm) {
       });
 
       window.WatercastApi.setToken(payload.token);
-      alert("Login successful! Redirecting to home...");
+      await window.WatercastUI?.alert("Login successful! Redirecting to home...");
       setTimeout(() => {
         window.location.href = "index.html";
       }, 600);
     } catch (err) {
       window.WatercastUI?.setButtonLoading(submitBtn, false);
-      showError(err.message || "Login failed");
+      await showError(err.message || "Login failed");
     }
   });
 }
@@ -66,13 +66,13 @@ if (signupForm) {
       });
 
       window.WatercastApi.setToken(payload.token);
-      alert("Account created! Redirecting to home...");
+      await window.WatercastUI?.alert("Account created! Redirecting to home...");
       setTimeout(() => {
         window.location.href = "index.html";
       }, 600);
     } catch (err) {
       window.WatercastUI?.setButtonLoading(submitBtn, false);
-      showError(err.message || "Signup failed");
+      await showError(err.message || "Signup failed");
     }
   });
 }

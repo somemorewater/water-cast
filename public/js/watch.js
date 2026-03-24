@@ -223,7 +223,9 @@ function addChatMessage(username, message) {
   const params = new URLSearchParams(window.location.search);
   streamId = params.get("streamId");
   if (!streamId) {
-    alert("Missing stream ID. Return to the home page to pick a live stream.");
+    await window.WatercastUI?.alert(
+      "Missing stream ID. Return to the home page to pick a live stream."
+    );
     window.location.href = "index.html";
     return;
   }

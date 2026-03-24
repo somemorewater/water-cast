@@ -180,12 +180,12 @@ const stopStream = async () => {
 goLiveBtn.addEventListener("click", async () => {
   const { title } = getStreamPayload();
   if (!title.trim()) {
-    alert("Please enter a stream title");
+    await window.WatercastUI?.alert("Please enter a stream title");
     return;
   }
 
   if (!window.WatercastApi.getToken()) {
-    alert("Please log in before going live.");
+    await window.WatercastUI?.alert("Please log in before going live.");
     window.location.href = "login.html";
     return;
   }
@@ -221,14 +221,17 @@ goLiveBtn.addEventListener("click", async () => {
     window.WatercastUI?.setButtonLoading(goLiveBtn, false);
   } catch (error) {
     console.error("Go live error:", error);
-    alert(error.message || "Unable to start stream");
+    await window.WatercastUI?.alert(error.message || "Unable to start stream");
     window.WatercastUI?.setButtonLoading(goLiveBtn, false);
   }
 });
 
 // Stop Streaming Button
-stopStreamBtn.addEventListener("click", () => {
-  if (confirm("Are you sure you want to stop streaming?")) {
+stopStreamBtn.addEventListener("click", async () => {
+  const ok = await window.WatercastUI?.confirm(
+    "Are you sure you want to stop streaming?"
+  );
+  if (ok) {
     window.WatercastUI?.setButtonLoading(stopStreamBtn, true, "Stopping...");
     stopStream().finally(() => {
       window.WatercastUI?.setButtonLoading(stopStreamBtn, false);
@@ -264,7 +267,7 @@ testCameraBtn.addEventListener("click", async () => {
       errorMessage += "Please check your camera connection and permissions.";
     }
 
-    alert(errorMessage);
+    await window.WatercastUI?.alert(errorMessage);
   }
 });
 
@@ -297,7 +300,9 @@ copyKeyBtn.addEventListener("click", async () => {
   } catch (error) {
     console.error("Copy failed:", error);
     streamKey.select();
-    alert("Automatic copy failed. Please press Ctrl+C (or Cmd+C on Mac) to copy.");
+    await window.WatercastUI?.alert(
+      "Automatic copy failed. Please press Ctrl+C (or Cmd+C on Mac) to copy."
+    );
   }
 });
 
@@ -307,7 +312,7 @@ if (copyLinkBtn && streamLink) {
       await navigator.clipboard.writeText(streamLink.value);
       showCopySuccess(copyLinkBtn, "Link copied!");
     } catch (error) {
-      alert("Unable to copy link. Please copy manually.");
+      await window.WatercastUI?.alert("Unable to copy link. Please copy manually.");
     }
   });
 }

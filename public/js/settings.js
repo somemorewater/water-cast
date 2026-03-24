@@ -112,7 +112,7 @@ const loadSettings = async () => {
     applySettingsToForm(payload);
   } catch (err) {
     console.warn("Failed to load settings", err);
-    alert("Please log in to access settings.");
+    await window.WatercastUI?.alert("Please log in to access settings.");
     window.location.href = "login.html";
   }
 };
@@ -125,10 +125,10 @@ const saveSettings = async () => {
       body: JSON.stringify(collectSettingsFromForm()),
     });
     window.WatercastUI?.setButtonLoading(saveBtn, false);
-    alert("Settings saved!");
+    await window.WatercastUI?.alert("Settings saved!");
   } catch (err) {
     window.WatercastUI?.setButtonLoading(saveBtn, false);
-    alert(err.message || "Unable to save settings.");
+    await window.WatercastUI?.alert(err.message || "Unable to save settings.");
   }
 };
 
@@ -148,6 +148,8 @@ if (restoreBtn) {
 if (window.WatercastApi.getToken()) {
   loadSettings();
 } else {
-  alert("Please log in to access settings.");
-  window.location.href = "login.html";
+  (async () => {
+    await window.WatercastUI?.alert("Please log in to access settings.");
+    window.location.href = "login.html";
+  })();
 }
