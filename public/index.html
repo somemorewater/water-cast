@@ -216,109 +216,12 @@
       <div class="container mx-auto px-4">
         <div class="flex justify-between items-center mb-8">
           <h2 class="text-3xl font-bold">Live Now</h2>
-          <a href="#" class="text-blue-600 hover:text-blue-700 font-medium">
+          <a href="./dashboard.html" class="text-blue-600 hover:text-blue-700 font-medium">
             View All <i class="fas fa-arrow-right ml-1"></i>
           </a>
         </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Stream Card 1 -->
-          <div
-            class="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg hover:-translate-y-1 transition duration-200"
-          >
-            <a href="watch.html" class="block relative">
-              <div
-                class="aspect-video bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center"
-              >
-                <i class="fas fa-play text-white text-4xl opacity-75"></i>
-              </div>
-              <div
-                class="absolute top-3 left-3 bg-red-600 text-white px-3 py-1 rounded text-xs font-bold flex items-center gap-1.5"
-              >
-                <span class="w-2 h-2 bg-white rounded-full pulse-dot"></span>
-                LIVE
-              </div>
-              <div
-                class="absolute bottom-3 right-3 bg-black bg-opacity-75 backdrop-blur-sm text-white px-3 py-1 rounded text-sm font-semibold"
-              >
-                <i class="fas fa-eye mr-1"></i>2.3K viewers
-              </div>
-            </a>
-            <div class="p-4">
-              <h5 class="font-bold text-lg mb-2">Tech Talk: Web Development</h5>
-              <p class="text-gray-600 text-sm mb-2">StreamerName</p>
-              <span
-                class="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-xs font-semibold"
-                >Technology</span
-              >
-            </div>
-          </div>
-
-          <!-- Stream Card 2 -->
-          <div
-            class="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg hover:-translate-y-1 transition duration-200"
-          >
-            <a href="watch.html" class="block relative">
-              <div
-                class="aspect-video bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center"
-              >
-                <i class="fas fa-gamepad text-white text-4xl opacity-75"></i>
-              </div>
-              <div
-                class="absolute top-3 left-3 bg-red-600 text-white px-3 py-1 rounded text-xs font-bold flex items-center gap-1.5"
-              >
-                <span class="w-2 h-2 bg-white rounded-full pulse-dot"></span>
-                LIVE
-              </div>
-              <div
-                class="absolute bottom-3 right-3 bg-black bg-opacity-75 backdrop-blur-sm text-white px-3 py-1 rounded text-sm font-semibold"
-              >
-                <i class="fas fa-eye mr-1"></i>5.1K viewers
-              </div>
-            </a>
-            <div class="p-4">
-              <h5 class="font-bold text-lg mb-2">Gaming Marathon</h5>
-              <p class="text-gray-600 text-sm mb-2">GamerPro</p>
-              <span
-                class="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-xs font-semibold"
-                >Gaming</span
-              >
-            </div>
-          </div>
-
-          <!-- Stream Card 3 -->
-          <div
-            class="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg hover:-translate-y-1 transition duration-200"
-          >
-            <a href="watch.html" class="block relative">
-              <div
-                class="aspect-video bg-gradient-to-br from-orange-500 to-orange-700 flex items-center justify-center"
-              >
-                <i class="fas fa-utensils text-white text-4xl opacity-75"></i>
-              </div>
-              <div
-                class="absolute top-3 left-3 bg-red-600 text-white px-3 py-1 rounded text-xs font-bold flex items-center gap-1.5"
-              >
-                <span class="w-2 h-2 bg-white rounded-full pulse-dot"></span>
-                LIVE
-              </div>
-              <div
-                class="absolute bottom-3 right-3 bg-black bg-opacity-75 backdrop-blur-sm text-white px-3 py-1 rounded text-sm font-semibold"
-              >
-                <i class="fas fa-eye mr-1"></i>892 viewers
-              </div>
-            </a>
-            <div class="p-4">
-              <h5 class="font-bold text-lg mb-2">
-                Cooking Show: Italian Cuisine
-              </h5>
-              <p class="text-gray-600 text-sm mb-2">ChefMario</p>
-              <span
-                class="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-xs font-semibold"
-                >Cooking</span
-              >
-            </div>
-          </div>
-        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="liveNowGrid"></div>
+        <div class="text-sm text-gray-500 mt-6" id="liveNowEmpty">Loading live streams...</div>
       </div>
     </section>
 
@@ -394,9 +297,9 @@
     </footer>
 
     <script src="./js/mobile-menu.js"></script>
+    <script src="./js/api.js"></script>
+    <script src="./js/home.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="./js/slider.js"></script>
-      </div>
-    </div>
   </body>
 </html>

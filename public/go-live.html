@@ -426,6 +426,31 @@
             >
               <i class="fas fa-copy mr-2"></i>Copy Key
             </button>
+
+            <div class="mt-4">
+              <h6 class="text-sm font-semibold text-gray-700 mb-2">
+                <i class="fas fa-link mr-2 text-gray-400"></i>Share Link
+              </h6>
+              <div class="flex gap-2 mb-2">
+                <input
+                  type="text"
+                  class="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none"
+                  id="streamLink"
+                  value=""
+                  readonly
+                />
+                <button
+                  class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition text-sm"
+                  type="button"
+                  id="copyLinkBtn"
+                >
+                  Copy
+                </button>
+              </div>
+              <p class="text-xs text-gray-500">
+                Share this link so others can watch your live stream.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -453,6 +478,8 @@
       </div>
     </footer>
 
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+    <script src="./js/api.js"></script>
     <script src="./js/go-live.js"></script>
     <script src="./js/mobile-menu.js"></script>
       </div>

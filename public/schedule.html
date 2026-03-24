@@ -150,9 +150,9 @@
             <p class="text-sm uppercase tracking-[0.3em] text-blue-600 font-semibold">
               Stream Schedule
             </p>
-            <h1 class="text-4xl md:text-5xl font-bold mt-2">Plan your next broadcasts</h1>
+            <h1 class="text-4xl md:text-5xl font-bold mt-2">Schedule streams</h1>
             <p class="text-lg text-gray-600 mt-2">
-              Keep your audience informed with consistent scheduling.
+              Scheduling will appear here once it is enabled.
             </p>
           </div>
           <div class="flex flex-wrap gap-3">
@@ -188,162 +188,24 @@
                   Manage calendar
                 </button>
               </div>
-              <div class="space-y-4">
-                <div
-                  class="p-4 rounded-lg border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition"
-                >
-                  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-                    <div>
-                      <p class="font-semibold">Community Q&A</p>
-                      <p class="text-sm text-gray-500">Today • 7:30 PM • 90 min</p>
-                    </div>
-                    <div class="flex items-center gap-3">
-                      <span class="text-xs font-semibold uppercase px-3 py-1 rounded-full bg-amber-50 text-amber-600">
-                        Scheduled
-                      </span>
-                      <button
-                        class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-semibold text-gray-700 hover:bg-white"
-                        type="button"
-                      >
-                        Edit
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="p-4 rounded-lg border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition"
-                >
-                  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-                    <div>
-                      <p class="font-semibold">Behind the Scenes</p>
-                      <p class="text-sm text-gray-500">Fri • 6:00 PM • 45 min</p>
-                    </div>
-                    <div class="flex items-center gap-3">
-                      <span class="text-xs font-semibold uppercase px-3 py-1 rounded-full bg-blue-50 text-blue-600">
-                        Draft
-                      </span>
-                      <button
-                        class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-semibold text-gray-700 hover:bg-white"
-                        type="button"
-                      >
-                        Edit
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="p-4 rounded-lg border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition"
-                >
-                  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-                    <div>
-                      <p class="font-semibold">Collab Build Session</p>
-                      <p class="text-sm text-gray-500">Sun • 4:00 PM • 2 hrs</p>
-                    </div>
-                    <div class="flex items-center gap-3">
-                      <span class="text-xs font-semibold uppercase px-3 py-1 rounded-full bg-green-50 text-green-600">
-                        Confirmed
-                      </span>
-                      <button
-                        class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-semibold text-gray-700 hover:bg-white"
-                        type="button"
-                      >
-                        Edit
-                      </button>
-                    </div>
-                  </div>
-                </div>
+              <div class="space-y-4" id="scheduleList">
+                <div class="text-sm text-gray-500">No scheduled streams yet.</div>
               </div>
             </div>
 
             <div class="bg-white border border-gray-200 rounded-xl p-6">
-              <h2 class="text-xl font-bold mb-4">Schedule a New Stream</h2>
-              <form class="grid md:grid-cols-2 gap-4">
-                <div class="md:col-span-2">
-                  <label class="text-sm font-semibold text-gray-600">Stream Title</label>
-                  <input
-                    class="mt-2 w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    type="text"
-                    placeholder="Enter a title"
-                  />
-                </div>
-                <div>
-                  <label class="text-sm font-semibold text-gray-600">Date</label>
-                  <input
-                    class="mt-2 w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    type="date"
-                  />
-                </div>
-                <div>
-                  <label class="text-sm font-semibold text-gray-600">Start Time</label>
-                  <input
-                    class="mt-2 w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    type="time"
-                  />
-                </div>
-                <div>
-                  <label class="text-sm font-semibold text-gray-600">Category</label>
-                  <select
-                    class="mt-2 w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  >
-                    <option>Just Chatting</option>
-                    <option>Tech & Coding</option>
-                    <option>Music</option>
-                    <option>Gaming</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="text-sm font-semibold text-gray-600">Visibility</label>
-                  <select
-                    class="mt-2 w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  >
-                    <option>Public</option>
-                    <option>Subscribers Only</option>
-                    <option>Private</option>
-                  </select>
-                </div>
-                <div class="md:col-span-2">
-                  <label class="text-sm font-semibold text-gray-600">Description</label>
-                  <textarea
-                    class="mt-2 w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    rows="4"
-                    placeholder="Add a short summary"
-                  ></textarea>
-                </div>
-                <div class="md:col-span-2 flex flex-wrap gap-3">
-                  <button
-                    class="px-6 py-3 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
-                    type="button"
-                  >
-                    Save Schedule
-                  </button>
-                  <button
-                    class="px-6 py-3 rounded-lg border border-gray-300 text-gray-700 font-semibold hover:bg-white transition"
-                    type="reset"
-                  >
-                    Clear
-                  </button>
-                </div>
-              </form>
+              <h2 class="text-xl font-bold mb-2">Scheduling</h2>
+              <p class="text-sm text-gray-600">
+                Scheduling is not enabled yet. This page is realtime-only and will
+                show items once scheduling is available.
+              </p>
             </div>
           </div>
 
           <aside class="space-y-6">
             <div class="bg-white border border-gray-200 rounded-xl p-6">
-              <h3 class="text-xl font-bold mb-4">This Week</h3>
-              <div class="space-y-3 text-sm text-gray-600">
-                <div class="flex items-center justify-between">
-                  <span>Streams planned</span>
-                  <span class="font-semibold text-gray-900">5</span>
-                </div>
-                <div class="flex items-center justify-between">
-                  <span>Total hours</span>
-                  <span class="font-semibold text-gray-900">9.5h</span>
-                </div>
-                <div class="flex items-center justify-between">
-                  <span>Average attendance</span>
-                  <span class="font-semibold text-gray-900">1.8k</span>
-                </div>
-              </div>
+              <h3 class="text-xl font-bold mb-4">Schedule Status</h3>
+              <p class="text-sm text-gray-600">No scheduled streams yet.</p>
             </div>
 
             <div class="bg-white border border-gray-200 rounded-xl p-6">
@@ -392,6 +254,8 @@
       </div>
     </footer>
 
+    <script src="./js/api.js"></script>
+    <script src="./js/schedule.js"></script>
     <script src="./js/mobile-menu.js"></script>
       </div>
     </div>

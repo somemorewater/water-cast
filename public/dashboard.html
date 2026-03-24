@@ -151,10 +151,10 @@
               Creator Dashboard
             </p>
             <h1 class="text-4xl md:text-5xl font-bold leading-tight mt-2">
-              Welcome back, Kai.
+              Welcome back, <span id="dashboardName">Creator</span>.
             </h1>
-            <p class="text-lg text-gray-600 mt-2">
-              Your channel momentum is up 14% this week. Keep the streak alive.
+            <p class="text-lg text-gray-600 mt-2" id="dashboardSubtext">
+              Realtime stats update every 10 seconds.
             </p>
           </div>
           <div class="flex flex-wrap gap-3">
@@ -178,54 +178,39 @@
     <!-- Stats -->
     <section class="pb-10">
       <div class="container mx-auto px-4">
-        <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
           <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
             <div class="flex items-center justify-between">
-              <p class="text-sm font-semibold text-gray-500">Live Viewers</p>
+              <p class="text-sm font-semibold text-gray-500">Live Streams</p>
               <span class="h-9 w-9 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center">
                 <i class="fas fa-users"></i>
               </span>
             </div>
-            <h2 class="text-3xl font-bold mt-4">1,842</h2>
-            <p class="text-sm text-green-600 mt-2">
-              <i class="fas fa-arrow-up"></i> 12% since yesterday
-            </p>
+            <h2 class="text-3xl font-bold mt-4" id="liveStreamsCount">0</h2>
+            <p class="text-sm text-gray-500 mt-2">Currently live on WaterCast</p>
           </div>
           <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
             <div class="flex items-center justify-between">
-              <p class="text-sm font-semibold text-gray-500">Subscribers</p>
+              <p class="text-sm font-semibold text-gray-500">Total Live Viewers</p>
               <span class="h-9 w-9 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center">
-                <i class="fas fa-star"></i>
+                <i class="fas fa-eye"></i>
               </span>
             </div>
-            <h2 class="text-3xl font-bold mt-4">24.3k</h2>
-            <p class="text-sm text-green-600 mt-2">
-              <i class="fas fa-arrow-up"></i> 840 new this week
-            </p>
+            <h2 class="text-3xl font-bold mt-4" id="totalViewersCount">0</h2>
+            <p class="text-sm text-gray-500 mt-2">Across all live streams</p>
           </div>
           <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
             <div class="flex items-center justify-between">
-              <p class="text-sm font-semibold text-gray-500">Stream Hours</p>
+              <p class="text-sm font-semibold text-gray-500">Your Live Streams</p>
               <span class="h-9 w-9 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center">
                 <i class="fas fa-clock"></i>
               </span>
             </div>
-            <h2 class="text-3xl font-bold mt-4">18.6</h2>
-            <p class="text-sm text-gray-500 mt-2">2.5 hours scheduled</p>
-          </div>
-          <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-            <div class="flex items-center justify-between">
-              <p class="text-sm font-semibold text-gray-500">Revenue</p>
-              <span class="h-9 w-9 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center">
-                <i class="fas fa-wallet"></i>
-              </span>
-            </div>
-            <h2 class="text-3xl font-bold mt-4">$3,980</h2>
-            <p class="text-sm text-green-600 mt-2">
-              <i class="fas fa-arrow-up"></i> +$540 this week
-            </p>
+            <h2 class="text-3xl font-bold mt-4" id="yourLiveCount">0</h2>
+            <p class="text-sm text-gray-500 mt-2">Running right now</p>
           </div>
         </div>
+        <p class="text-xs text-gray-400 mt-3" id="lastUpdated"></p>
       </div>
     </section>
 
@@ -245,122 +230,18 @@
                   View all
                 </button>
               </div>
-              <div class="space-y-4">
-                <div
-                  class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-4 rounded-lg border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition"
-                >
-                  <div class="flex items-center gap-4">
-                    <div class="h-16 w-24 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-semibold">
-                      LIVE
-                    </div>
-                    <div>
-                      <p class="font-semibold">Midnight Coding Session</p>
-                      <p class="text-sm text-gray-500">2h 12m • 9,420 views</p>
-                    </div>
-                  </div>
-                  <div class="flex items-center gap-3">
-                    <span class="text-xs font-semibold uppercase px-3 py-1 rounded-full bg-green-50 text-green-600">
-                      Completed
-                    </span>
-                    <button
-                      class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-semibold text-gray-700 hover:bg-white"
-                      type="button"
-                    >
-                      Analytics
-                    </button>
-                  </div>
-                </div>
-                <div
-                  class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-4 rounded-lg border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition"
-                >
-                  <div class="flex items-center gap-4">
-                    <div class="h-16 w-24 rounded-lg bg-gradient-to-br from-rose-500 to-orange-500 flex items-center justify-center text-white font-semibold">
-                      VOD
-                    </div>
-                    <div>
-                      <p class="font-semibold">Studio Tour + Gear Setup</p>
-                      <p class="text-sm text-gray-500">58m • 5,102 views</p>
-                    </div>
-                  </div>
-                  <div class="flex items-center gap-3">
-                    <span class="text-xs font-semibold uppercase px-3 py-1 rounded-full bg-blue-50 text-blue-600">
-                      Highlighted
-                    </span>
-                    <button
-                      class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-semibold text-gray-700 hover:bg-white"
-                      type="button"
-                    >
-                      Share
-                    </button>
-                  </div>
-                </div>
-                <div
-                  class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-4 rounded-lg border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition"
-                >
-                  <div class="flex items-center gap-4">
-                    <div class="h-16 w-24 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center text-white font-semibold">
-                      PREP
-                    </div>
-                    <div>
-                      <p class="font-semibold">Community Q&A</p>
-                      <p class="text-sm text-gray-500">Scheduled • Today 7:30 PM</p>
-                    </div>
-                  </div>
-                  <div class="flex items-center gap-3">
-                    <span class="text-xs font-semibold uppercase px-3 py-1 rounded-full bg-amber-50 text-amber-600">
-                      Upcoming
-                    </span>
-                    <button
-                      class="px-4 py-2 rounded-lg bg-blue-600 text-sm font-semibold text-white hover:bg-blue-700"
-                      type="button"
-                    >
-                      Edit
-                    </button>
-                  </div>
-                </div>
+              <div class="space-y-4" id="recentStreamsList">
+                <div class="text-sm text-gray-500">No live streams yet.</div>
               </div>
             </div>
 
             <div class="bg-white border border-gray-200 rounded-xl p-6">
-              <div class="flex items-center justify-between mb-6">
-                <h3 class="text-xl font-bold">Audience Growth</h3>
-                <div class="flex items-center gap-2">
-                  <button
-                    class="px-3 py-1.5 rounded-lg bg-blue-600 text-white text-xs font-semibold"
-                    type="button"
-                  >
-                    7D
-                  </button>
-                  <button
-                    class="px-3 py-1.5 rounded-lg border border-gray-200 text-xs font-semibold text-gray-600"
-                    type="button"
-                  >
-                    30D
-                  </button>
-                  <button
-                    class="px-3 py-1.5 rounded-lg border border-gray-200 text-xs font-semibold text-gray-600"
-                    type="button"
-                  >
-                    90D
-                  </button>
-                </div>
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-xl font-bold">Live Activity</h3>
+                <span class="text-xs uppercase tracking-widest text-blue-600 font-semibold">Realtime</span>
               </div>
-              <div class="grid md:grid-cols-2 gap-6">
-                <div class="p-4 rounded-xl bg-gradient-to-br from-blue-50 to-white border border-blue-100">
-                  <p class="text-sm text-gray-500">New Followers</p>
-                  <p class="text-3xl font-bold mt-2">+2,380</p>
-                  <p class="text-sm text-green-600 mt-2">
-                    <i class="fas fa-arrow-up"></i> 22% increase
-                  </p>
-                </div>
-                <div class="p-4 rounded-xl bg-gradient-to-br from-emerald-50 to-white border border-emerald-100">
-                  <p class="text-sm text-gray-500">Average Watch Time</p>
-                  <p class="text-3xl font-bold mt-2">31m 14s</p>
-                  <p class="text-sm text-gray-600 mt-2">Strong retention</p>
-                </div>
-              </div>
-              <div class="mt-6 h-32 rounded-xl bg-gradient-to-r from-blue-100 via-white to-purple-100 border border-gray-100 flex items-center justify-center text-gray-500">
-                Analytics visualization placeholder
+              <div class="space-y-3 text-sm text-gray-600" id="liveActivityList">
+                <div>No live activity yet.</div>
               </div>
             </div>
           </div>
@@ -368,117 +249,16 @@
           <!-- Right Column -->
           <div class="space-y-6">
             <div class="bg-white border border-gray-200 rounded-xl p-6">
-              <div class="flex items-center justify-between mb-4">
-                <h3 class="text-xl font-bold">Notifications</h3>
-                <div class="flex items-center gap-3">
-                  <span class="text-xs uppercase tracking-widest text-blue-600 font-semibold">Live</span>
-                  <a
-                    class="text-sm font-semibold text-blue-600 hover:text-blue-700"
-                    href="./notifications.html"
-                    >View all</a
-                  >
-                </div>
-              </div>
-              <div class="space-y-4">
-                <div class="flex items-start gap-3">
-                  <span class="h-9 w-9 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center">
-                    <i class="fas fa-bell"></i>
-                  </span>
-                  <div>
-                    <p class="font-semibold">New raid from StreamForge</p>
-                    <p class="text-sm text-gray-500">+120 viewers joined your chat.</p>
-                  </div>
-                </div>
-                <div class="flex items-start gap-3">
-                  <span class="h-9 w-9 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center">
-                    <i class="fas fa-heart"></i>
-                  </span>
-                  <div>
-                    <p class="font-semibold">Membership milestone</p>
-                    <p class="text-sm text-gray-500">You reached 24k subscribers.</p>
-                  </div>
-                </div>
-                <div class="flex items-start gap-3">
-                  <span class="h-9 w-9 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center">
-                    <i class="fas fa-bolt"></i>
-                  </span>
-                  <div>
-                    <p class="font-semibold">Stream health</p>
-                    <p class="text-sm text-gray-500">Bitrate stable. No frame drops.</p>
-                  </div>
-                </div>
+              <h3 class="text-xl font-bold mb-4">Your Live Status</h3>
+              <div class="space-y-3 text-sm text-gray-600" id="yourLiveStatus">
+                <div>Not live right now.</div>
               </div>
             </div>
 
             <div class="bg-white border border-gray-200 rounded-xl p-6">
-              <h3 class="text-xl font-bold mb-4">Next Stream Plan</h3>
-              <div class="space-y-4">
-                <div class="flex items-center justify-between">
-                  <div>
-                    <p class="font-semibold">Community Q&A</p>
-                    <p class="text-sm text-gray-500">Today • 7:30 PM</p>
-                  </div>
-                  <span class="text-xs font-semibold uppercase px-3 py-1 rounded-full bg-blue-50 text-blue-600">Live</span>
-                </div>
-                <div class="border border-dashed border-gray-200 rounded-lg p-4">
-                  <p class="text-sm text-gray-500">Prep Checklist</p>
-                  <div class="mt-3 space-y-2 text-sm">
-                    <label class="flex items-center gap-2">
-                      <input type="checkbox" class="accent-blue-600" checked />
-                      Update overlays
-                    </label>
-                    <label class="flex items-center gap-2">
-                      <input type="checkbox" class="accent-blue-600" checked />
-                      Test microphone
-                    </label>
-                    <label class="flex items-center gap-2">
-                      <input type="checkbox" class="accent-blue-600" />
-                      Publish announcement
-                    </label>
-                  </div>
-                </div>
-                <a
-                  class="w-full px-4 py-3 rounded-lg border border-gray-200 text-gray-700 font-semibold hover:bg-white text-center"
-                  href="./schedule.html"
-                >
-                  Manage schedule
-                </a>
-              </div>
-            </div>
-
-            <div class="bg-white border border-gray-200 rounded-xl p-6">
-              <h3 class="text-xl font-bold mb-4">Quick Actions</h3>
-              <div class="grid grid-cols-2 gap-3">
-                <button
-                  class="px-3 py-4 rounded-lg bg-blue-600 text-white font-semibold text-sm hover:bg-blue-700"
-                  type="button"
-                >
-                  <i class="fas fa-scissors mr-2"></i>Clip Video
-                </button>
-                <button
-                  class="px-3 py-4 rounded-lg border border-gray-200 text-gray-700 font-semibold text-sm hover:bg-white"
-                  type="button"
-                >
-                  <i class="fas fa-image mr-2"></i>Update Banner
-                </button>
-                <button
-                  class="px-3 py-4 rounded-lg border border-gray-200 text-gray-700 font-semibold text-sm hover:bg-white"
-                  type="button"
-                >
-                  <i class="fas fa-microphone-alt mr-2"></i>Audio Check
-                </button>
-                <button
-                  class="px-3 py-4 rounded-lg border border-gray-200 text-gray-700 font-semibold text-sm hover:bg-white"
-                  type="button"
-                >
-                  <i class="fas fa-comments mr-2"></i>Moderation
-                </button>
-                <a
-                  class="col-span-2 px-3 py-4 rounded-lg border border-gray-200 text-gray-700 font-semibold text-sm hover:bg-white text-center"
-                  href="./settings.html"
-                >
-                  <i class="fas fa-gear mr-2"></i>Open Settings
-                </a>
+              <h3 class="text-xl font-bold mb-4">Live Alerts</h3>
+              <div class="space-y-3 text-sm text-gray-600" id="liveAlerts">
+                <div>No alerts.</div>
               </div>
             </div>
           </div>
@@ -497,6 +277,8 @@
       </div>
     </footer>
 
+    <script src="./js/api.js"></script>
+    <script src="./js/dashboard.js"></script>
     <script src="./js/mobile-menu.js"></script>
       </div>
     </div>

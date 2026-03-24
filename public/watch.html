@@ -137,12 +137,13 @@
                         </div>
                     </div>
                     
-                    <div class="aspect-video bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center" id="videoPlayer">
-                        <div class="text-center text-white">
+                    <div class="aspect-video bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center relative" id="videoPlayer">
+                        <video id="remoteVideo" autoplay playsinline class="absolute inset-0 w-full h-full object-cover"></video>
+                        <div class="text-center text-white relative z-10" id="videoPlaceholder">
                             <div class="mb-4">
                                 <i class="fas fa-play-circle text-7xl opacity-75"></i>
                             </div>
-                            <p class="text-xl">Stream Playing</p>
+                            <p class="text-xl">Waiting for stream...</p>
                         </div>
                     </div>
 
@@ -167,14 +168,14 @@
 
                 <!-- Stream Info -->
                 <div class="bg-white rounded-lg p-6 mt-6">
-                    <h3 class="text-2xl font-bold mb-4">Tech Talk: Building Modern Web Applications</h3>
+                    <h3 class="text-2xl font-bold mb-4" id="streamTitle">Loading stream...</h3>
                     <div class="flex items-center gap-4 mb-4">
                         <div class="flex items-center">
                             <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
                                 ST
                             </div>
                             <div class="ml-3">
-                                <div class="font-bold">StreamerTech</div>
+                            <div class="font-bold" id="streamerName">Streamer</div>
                                 <div class="text-sm text-gray-600">
                                     <i class="fas fa-users mr-1"></i>12.5K followers
                                 </div>
@@ -184,9 +185,8 @@
                             <i class="fas fa-user-plus mr-2"></i>Follow
                         </button>
                     </div>
-                    <p class="text-gray-600 mb-4">
-                        Join us as we dive deep into modern web development practices, exploring the latest frameworks and tools. 
-                        We'll build a real-time application from scratch and discuss best practices for production deployments.
+                    <p class="text-gray-600 mb-4" id="streamDescription">
+                        Loading stream description...
                     </p>
                     <div class="flex gap-2 flex-wrap">
                         <span class="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-semibold">
@@ -317,6 +317,8 @@
       </div>
     </footer>
 
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+    <script src="./js/api.js"></script>
     <script src="./js/watch.js"></script>
     <script src="./js/mobile-menu.js"></script>
         </div>

@@ -1,32 +1,36 @@
-
-
-// Login Form
 const loginForm = document.getElementById("loginForm");
+const signupForm = document.getElementById("signupForm");
+
+const showError = (message) => {
+  alert(message);
+};
+
 if (loginForm) {
-  loginForm.addEventListener("submit", (e) => {
+  loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-    const rememberMe = document.getElementById("rememberMe").checked;
 
-    // Simulate login
-    console.log("Login attempt:", { email, rememberMe });
+    try {
+      const payload = await window.WatercastApi.fetchJson("/api/auth/login", {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+      });
 
-    // Show success message
-    alert("Login successful! Redirecting to home...");
-
-    // Redirect to home page
-    setTimeout(() => {
-      window.location.href = "index.html";
-    }, 1000);
+      window.WatercastApi.setToken(payload.token);
+      alert("Login successful! Redirecting to home...");
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 600);
+    } catch (err) {
+      showError(err.message || "Login failed");
+    }
   });
 }
 
-// Signup Form
-const signupForm = document.getElementById("signupForm");
 if (signupForm) {
-  signupForm.addEventListener("submit", (e) => {
+  signupForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const username = document.getElementById("username").value;
@@ -35,43 +39,43 @@ if (signupForm) {
     const confirmPassword = document.getElementById("confirmPassword").value;
     const agreeTerms = document.getElementById("agreeTerms").checked;
 
-    // Validation
     if (password.length < 8) {
-      alert("Password must be at least 8 characters long");
+      showError("Password must be at least 8 characters long");
       return;
     }
 
     if (password !== confirmPassword) {
-      alert("Passwords do not match");
+      showError("Passwords do not match");
       return;
     }
 
     if (!agreeTerms) {
-      alert("You must agree to the Terms of Service and Privacy Policy");
+      showError("You must agree to the Terms of Service and Privacy Policy");
       return;
     }
 
-    // Simulate signup
-    console.log("Signup attempt:", { username, email });
+    try {
+      const payload = await window.WatercastApi.fetchJson("/api/auth/signup", {
+        method: "POST",
+        body: JSON.stringify({ username, email, password }),
+      });
 
-    // Show success message
-    alert("Account created successfully! Redirecting to login...");
-
-    // Redirect to login page
-    setTimeout(() => {
-      window.location.href = "login.html";
-    }, 1000);
+      window.WatercastApi.setToken(payload.token);
+      alert("Account created! Redirecting to home...");
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 600);
+    } catch (err) {
+      showError(err.message || "Signup failed");
+    }
   });
 }
 
-// Password strength indicator (for signup)
 const passwordInput = document.getElementById("password");
 if (passwordInput && signupForm) {
   passwordInput.addEventListener("input", (e) => {
     const password = e.target.value;
     const strength = getPasswordStrength(password);
-
-    // You can add visual feedback here
     console.log("Password strength:", strength);
   });
 }
