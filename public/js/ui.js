@@ -88,5 +88,34 @@ window.WatercastUI = (() => {
   const confirm = (message, title = "Confirm") =>
     showModal({ title, message, confirmText: "Yes", cancelText: "No", showCancel: true });
 
-  return { setButtonLoading, alert, confirm };
+  const ensureToastContainer = () => {
+    let container = document.getElementById("watercastToastContainer");
+    if (container) return container;
+
+    container = document.createElement("div");
+    container.id = "watercastToastContainer";
+    container.className = "wc-toast-container";
+    document.body.appendChild(container);
+    return container;
+  };
+
+  const toast = (message, type = "info", duration = 2800) => {
+    const container = ensureToastContainer();
+    const toastEl = document.createElement("div");
+    toastEl.className = `wc-toast wc-toast-${type}`;
+    toastEl.textContent = message || "";
+
+    container.appendChild(toastEl);
+
+    requestAnimationFrame(() => {
+      toastEl.classList.add("show");
+    });
+
+    setTimeout(() => {
+      toastEl.classList.remove("show");
+      setTimeout(() => toastEl.remove(), 300);
+    }, duration);
+  };
+
+  return { setButtonLoading, alert, confirm, toast };
 })();

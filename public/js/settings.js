@@ -125,7 +125,7 @@ const saveSettings = async () => {
       body: JSON.stringify(collectSettingsFromForm()),
     });
     window.WatercastUI?.setButtonLoading(saveBtn, false);
-    await window.WatercastUI?.alert("Settings saved!");
+    window.WatercastUI?.toast("Settings saved!", "success");
   } catch (err) {
     window.WatercastUI?.setButtonLoading(saveBtn, false);
     await window.WatercastUI?.alert(err.message || "Unable to save settings.");
