@@ -4,6 +4,7 @@ const path = require("path");
 const { env } = require("./config/env");
 const authRoutes = require("./routes/auth.routes");
 const streamRoutes = require("./routes/stream.routes");
+const settingsRoutes = require("./routes/settings.routes");
 const { notFound, errorHandler } = require("./middleware/error.middleware");
 
 const app = express();
@@ -25,6 +26,7 @@ app.get("/api/health", (req, res) => {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/streams", streamRoutes);
+app.use("/api/settings", settingsRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

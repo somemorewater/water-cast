@@ -159,12 +159,14 @@
             <button
               class="px-5 py-3 rounded-lg border border-gray-300 text-gray-700 font-semibold hover:bg-white transition"
               type="button"
+              id="restoreDefaultsBtn"
             >
               Restore defaults
             </button>
             <button
               class="px-6 py-3 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
               type="button"
+              id="saveSettingsBtn"
             >
               Save changes
             </button>
@@ -186,6 +188,7 @@
                   <input
                     class="mt-2 w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     type="text"
+                    id="displayName"
                     placeholder="Kai Rivera"
                   />
                 </div>
@@ -194,6 +197,7 @@
                   <input
                     class="mt-2 w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     type="text"
+                    id="handle"
                     placeholder="@kai"
                   />
                 </div>
@@ -202,6 +206,7 @@
                   <textarea
                     class="mt-2 w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     rows="3"
+                    id="bio"
                     placeholder="Tell viewers about your stream"
                   ></textarea>
                 </div>
@@ -215,6 +220,7 @@
                   <label class="text-sm font-semibold text-gray-600">Default Category</label>
                   <select
                     class="mt-2 w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    id="defaultCategory"
                   >
                     <option>Tech & Coding</option>
                     <option>Just Chatting</option>
@@ -226,6 +232,7 @@
                   <label class="text-sm font-semibold text-gray-600">Default Visibility</label>
                   <select
                     class="mt-2 w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    id="defaultVisibility"
                   >
                     <option>Public</option>
                     <option>Subscribers Only</option>
@@ -236,6 +243,7 @@
                   <label class="text-sm font-semibold text-gray-600">Stream Quality</label>
                   <select
                     class="mt-2 w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    id="defaultQuality"
                   >
                     <option>1080p (Recommended)</option>
                     <option>720p</option>
@@ -245,7 +253,7 @@
                 <div>
                   <label class="text-sm font-semibold text-gray-600">Auto-record</label>
                   <div class="mt-3 flex items-center gap-3">
-                    <input type="checkbox" class="accent-blue-600" checked />
+                    <input type="checkbox" class="accent-blue-600" id="autoRecord" />
                     <span class="text-sm text-gray-600">Save streams as VOD</span>
                   </div>
                 </div>
@@ -257,19 +265,19 @@
               <div class="space-y-4 text-sm text-gray-600">
                 <label class="flex items-center justify-between">
                   <span>Viewer milestones</span>
-                  <input type="checkbox" class="accent-blue-600" checked />
+                  <input type="checkbox" class="accent-blue-600" id="notifViewerMilestones" />
                 </label>
                 <label class="flex items-center justify-between">
                   <span>Mentions and highlights</span>
-                  <input type="checkbox" class="accent-blue-600" checked />
+                  <input type="checkbox" class="accent-blue-600" id="notifMentionsHighlights" />
                 </label>
                 <label class="flex items-center justify-between">
                   <span>System health alerts</span>
-                  <input type="checkbox" class="accent-blue-600" checked />
+                  <input type="checkbox" class="accent-blue-600" id="notifSystemHealth" />
                 </label>
                 <label class="flex items-center justify-between">
                   <span>Weekly digest email</span>
-                  <input type="checkbox" class="accent-blue-600" />
+                  <input type="checkbox" class="accent-blue-600" id="notifWeeklyDigest" />
                 </label>
               </div>
               <div class="mt-4">
@@ -287,15 +295,15 @@
               <div class="space-y-4 text-sm text-gray-600">
                 <label class="flex items-center justify-between">
                   <span>Enable follower-only chat</span>
-                  <input type="checkbox" class="accent-blue-600" />
+                  <input type="checkbox" class="accent-blue-600" id="privacyFollowerOnlyChat" />
                 </label>
                 <label class="flex items-center justify-between">
                   <span>Require verified email for chat</span>
-                  <input type="checkbox" class="accent-blue-600" checked />
+                  <input type="checkbox" class="accent-blue-600" id="privacyRequireVerifiedEmail" />
                 </label>
                 <label class="flex items-center justify-between">
                   <span>Auto-moderation</span>
-                  <input type="checkbox" class="accent-blue-600" checked />
+                  <input type="checkbox" class="accent-blue-600" id="privacyAutoModeration" />
                 </label>
               </div>
             </div>
@@ -355,7 +363,8 @@
     </footer>
 
     <script src="./js/mobile-menu.js"></script>
-      </div>
-    </div>
+    <script src="./js/api.js"></script>
+    <script src="./js/ui.js"></script>
+    <script src="./js/settings.js"></script>
   </body>
 </html>

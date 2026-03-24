@@ -143,6 +143,7 @@ const stopStreamTimer = () => {
 
 const stopStream = async () => {
   isLive = false;
+  window.WatercastUI?.setButtonLoading(goLiveBtn, false);
   goLiveBtn.classList.remove("hidden");
   stopStreamBtn.classList.add("hidden");
   statusIndicator.className =
@@ -190,6 +191,7 @@ goLiveBtn.addEventListener("click", async () => {
   }
 
   try {
+    window.WatercastUI?.setButtonLoading(goLiveBtn, true, "Starting stream...");
     await startLocalStream();
 
     const payload = await window.WatercastApi.fetchJson("/api/streams", {
@@ -216,16 +218,21 @@ goLiveBtn.addEventListener("click", async () => {
 
     const socketInstance = ensureSocket();
     socketInstance.emit("broadcaster-join", { streamId });
+    window.WatercastUI?.setButtonLoading(goLiveBtn, false);
   } catch (error) {
     console.error("Go live error:", error);
     alert(error.message || "Unable to start stream");
+    window.WatercastUI?.setButtonLoading(goLiveBtn, false);
   }
 });
 
 // Stop Streaming Button
 stopStreamBtn.addEventListener("click", () => {
   if (confirm("Are you sure you want to stop streaming?")) {
-    stopStream();
+    window.WatercastUI?.setButtonLoading(stopStreamBtn, true, "Stopping...");
+    stopStream().finally(() => {
+      window.WatercastUI?.setButtonLoading(stopStreamBtn, false);
+    });
   }
 });
 

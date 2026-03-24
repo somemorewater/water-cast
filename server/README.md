@@ -25,6 +25,8 @@ The server will run on `http://localhost:5000` by default and serves the `public
 - `POST /api/streams/:id/end` (auth)
 - `GET /api/streams/live`
 - `GET /api/streams/:id`
+- `GET /api/settings` (auth)
+- `PUT /api/settings` (auth)
 
 ## WebRTC Signaling (Socket.IO)
 Events:

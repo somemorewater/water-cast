@@ -9,10 +9,12 @@ if (loginForm) {
   loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    const submitBtn = loginForm.querySelector("button[type='submit']");
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
     try {
+      window.WatercastUI?.setButtonLoading(submitBtn, true, "Signing in...");
       const payload = await window.WatercastApi.fetchJson("/api/auth/login", {
         method: "POST",
         body: JSON.stringify({ email, password }),
@@ -24,6 +26,7 @@ if (loginForm) {
         window.location.href = "index.html";
       }, 600);
     } catch (err) {
+      window.WatercastUI?.setButtonLoading(submitBtn, false);
       showError(err.message || "Login failed");
     }
   });
@@ -33,6 +36,7 @@ if (signupForm) {
   signupForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    const submitBtn = signupForm.querySelector("button[type='submit']");
     const username = document.getElementById("username").value;
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
@@ -55,6 +59,7 @@ if (signupForm) {
     }
 
     try {
+      window.WatercastUI?.setButtonLoading(submitBtn, true, "Creating account...");
       const payload = await window.WatercastApi.fetchJson("/api/auth/signup", {
         method: "POST",
         body: JSON.stringify({ username, email, password }),
@@ -66,6 +71,7 @@ if (signupForm) {
         window.location.href = "index.html";
       }, 600);
     } catch (err) {
+      window.WatercastUI?.setButtonLoading(submitBtn, false);
       showError(err.message || "Signup failed");
     }
   });
