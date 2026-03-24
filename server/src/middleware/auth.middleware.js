@@ -18,4 +18,22 @@ const requireAuth = (req, res, next) => {
   }
 };
 
-module.exports = { requireAuth };
+const optionalAuth = (req, res, next) => {
+  const header = req.headers.authorization || "";
+  const token = header.startsWith("Bearer ") ? header.slice(7) : header;
+
+  if (!token) {
+    return next();
+  }
+
+  try {
+    const payload = jwt.verify(token, env.JWT_SECRET);
+    req.user = payload;
+  } catch (err) {
+    // ignore invalid tokens for optional auth
+  }
+
+  return next();
+};
+
+module.exports = { requireAuth, optionalAuth };

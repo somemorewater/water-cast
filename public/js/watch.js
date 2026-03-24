@@ -17,12 +17,15 @@ const chatForm = document.getElementById("chatForm");
 const chatInput = document.getElementById("chatInput");
 const chatMessages = document.getElementById("chatMessages");
 const qualityBtn = document.getElementById("qualityBtn");
+const followBtn = document.getElementById("followBtn");
+const followerCountEl = document.querySelector(".fa-users")?.parentElement;
 
 let socket = null;
 let peer = null;
 let streamId = null;
 let displayName = "Guest";
 let streamIsLive = true;
+let streamerId = null;
 
 const updateStreamDetails = async () => {
   if (!streamId) return;
@@ -38,6 +41,12 @@ const updateStreamDetails = async () => {
     if (descEl) descEl.textContent = stream.description || "";
     if (streamerEl) streamerEl.textContent = stream.streamer?.username || "Streamer";
 
+    streamerId = stream.streamer?._id || null;
+
+    if (streamerId) {
+      await loadFollowState(streamerId);
+    }
+
     if (stream.status !== "live") {
       streamIsLive = false;
       addChatMessage("System", "This stream is offline.");
@@ -51,6 +60,58 @@ const updateStreamDetails = async () => {
       "We couldn't find that stream. Taking you back to live streams."
     );
     window.location.href = "index.html";
+  }
+};
+
+const updateFollowButton = (isFollowing) => {
+  if (!followBtn) return;
+  followBtn.classList.toggle("following", isFollowing);
+  if (isFollowing) {
+    followBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Following';
+  } else {
+    followBtn.innerHTML = '<i class="fas fa-user-plus mr-2"></i>Follow';
+  }
+};
+
+const updateFollowerCount = (count) => {
+  if (!followerCountEl) return;
+  followerCountEl.innerHTML = `<i class="fas fa-users mr-1"></i>${count.toLocaleString()} followers`;
+};
+
+const loadFollowState = async (id) => {
+  try {
+    const payload = await window.WatercastApi.fetchJson(`/api/users/${id}`);
+    const followerCount = payload.user?.followerCount || 0;
+    updateFollowerCount(followerCount);
+    updateFollowButton(Boolean(payload.user?.isFollowing));
+  } catch (err) {
+    console.warn("Unable to load follow status", err);
+  }
+};
+
+const toggleFollow = async () => {
+  if (!streamerId) return;
+  if (!window.WatercastApi.getToken()) {
+    await window.WatercastUI?.alert("Please log in to follow this streamer.");
+    window.location.href = "login.html";
+    return;
+  }
+
+  try {
+    window.WatercastUI?.setButtonLoading(followBtn, true, "Updating...");
+    const payload = await window.WatercastApi.fetchJson(`/api/users/${streamerId}/follow`, {
+      method: "POST",
+    });
+    updateFollowButton(Boolean(payload.following));
+    updateFollowerCount(Number(payload.followerCount || 0));
+    window.WatercastUI?.toast(
+      payload.following ? "You are now following this streamer." : "Unfollowed.",
+      "success"
+    );
+  } catch (err) {
+    await window.WatercastUI?.alert(err.message || "Unable to update follow status.");
+  } finally {
+    window.WatercastUI?.setButtonLoading(followBtn, false);
   }
 };
 
@@ -260,6 +321,10 @@ function addChatMessage(username, message) {
     initSocket();
   }
 })();
+
+if (followBtn) {
+  followBtn.addEventListener("click", toggleFollow);
+}
 
 // Keyboard shortcuts
 document.addEventListener("keydown", (e) => {
