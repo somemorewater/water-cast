@@ -1,67 +1,27 @@
-const { nanoid } = require("nanoid");
 const Stream = require("../models/stream.model");
+const {
+  createStreamService,
+  endStreamService,
+} = require("../services/stream.service");
 
 const createStream = async (req, res) => {
-  const { title, description, category, quality, enableChat } = req.body;
-
-  if (!title) {
-    return res.status(400).json({ message: "Stream title is required" });
+  try {
+    const result = await createStreamService({ userId: req.user.id, ...req.body });
+    return res.status(201).json(result);
+  } catch (err) {
+    const status = err.status || 500;
+    return res.status(status).json({ message: err.message || "Failed to create stream" });
   }
-
-  const trimmedTitle = String(title).trim();
-  if (trimmedTitle.length < 3) {
-    return res.status(400).json({ message: "Stream title must be at least 3 characters" });
-  }
-
-  await Stream.updateMany(
-    { streamer: req.user.id, status: "live" },
-    { status: "offline", endedAt: new Date(), viewerCount: 0 }
-  );
-
-  const streamKey = `sk_live_${nanoid(16)}`;
-
-  const stream = await Stream.create({
-    title: trimmedTitle,
-    description: description ? String(description).trim() : "",
-    category: category ? String(category).trim() : "other",
-    quality: quality ? String(quality).trim() : "1080p",
-    enableChat: Boolean(enableChat),
-    status: "live",
-    streamKey,
-    streamer: req.user.id,
-    startedAt: new Date(),
-  });
-
-  return res.status(201).json({
-    stream: {
-      id: stream._id,
-      title: stream.title,
-      description: stream.description,
-      category: stream.category,
-      quality: stream.quality,
-      enableChat: stream.enableChat,
-      status: stream.status,
-      streamKey: stream.streamKey,
-      streamer: stream.streamer,
-      startedAt: stream.startedAt,
-    },
-  });
 };
 
 const endStream = async (req, res) => {
-  const { id } = req.params;
-
-  const stream = await Stream.findOne({ _id: id, streamer: req.user.id });
-  if (!stream) {
-    return res.status(404).json({ message: "Stream not found" });
+  try {
+    const result = await endStreamService({ id: req.params.id, userId: req.user.id });
+    return res.json(result);
+  } catch (err) {
+    const status = err.status || 500;
+    return res.status(status).json({ message: err.message || "Failed to end stream" });
   }
-
-  stream.status = "offline";
-  stream.endedAt = new Date();
-  stream.viewerCount = 0;
-  await stream.save();
-
-  return res.json({ message: "Stream ended" });
 };
 
 const listLiveStreams = async (req, res) => {
