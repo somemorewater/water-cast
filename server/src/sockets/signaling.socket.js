@@ -2,25 +2,16 @@ const { Server } = require("socket.io");
 const jwt = require("jsonwebtoken");
 const Stream = require("../models/stream.model");
 const { env } = require("../config/env");
+const { addViewer, removeViewer, clearViewers } = require("../services/viewer.service");
 
 const rooms = new Map();
+const viewerStreamBySocket = new Map();
 
 const getRoom = (streamId) => {
   if (!rooms.has(streamId)) {
-    rooms.set(streamId, { broadcasterId: null, viewers: new Set() });
+    rooms.set(streamId, { broadcasterId: null });
   }
   return rooms.get(streamId);
-};
-
-const updateViewerCount = async (streamId) => {
-  const room = rooms.get(streamId);
-  if (!room) return;
-  const count = room.viewers.size;
-  try {
-    await Stream.updateOne({ _id: streamId }, { viewerCount: count });
-  } catch (err) {
-    // ignore
-  }
 };
 
 const initSockets = (httpServer) => {
@@ -79,7 +70,21 @@ const initSockets = (httpServer) => {
           return;
         }
         const room = getRoom(streamId);
-        room.viewers.add(socket.id);
+
+        const previousStreamId = viewerStreamBySocket.get(socket.id);
+        if (previousStreamId && previousStreamId !== streamId) {
+          const previousCount = removeViewer(previousStreamId, socket.id);
+          io.to(previousStreamId).emit("viewer-count", { count: previousCount });
+          const previousRoom = rooms.get(previousStreamId);
+          if (previousRoom?.broadcasterId) {
+            io.to(previousRoom.broadcasterId).emit("watcher-left", {
+              watcherId: socket.id,
+            });
+          }
+        }
+
+        const count = addViewer(streamId, socket.id);
+        viewerStreamBySocket.set(socket.id, streamId);
         socket.join(streamId);
 
         if (room.broadcasterId) {
@@ -88,8 +93,7 @@ const initSockets = (httpServer) => {
           });
         }
 
-        await updateViewerCount(streamId);
-        io.to(streamId).emit("viewer-count", { count: room.viewers.size });
+        io.to(streamId).emit("viewer-count", { count });
 
         if (name) {
           io.to(streamId).emit("chat-message", {
@@ -131,6 +135,7 @@ const initSockets = (httpServer) => {
         if (room && room.broadcasterId === socket.id) {
           io.to(streamId).emit("stream-ended");
           rooms.delete(streamId);
+          clearViewers(streamId);
           await Stream.updateOne(
             { _id: streamId },
             { status: "offline", endedAt: new Date(), viewerCount: 0 }
@@ -147,6 +152,7 @@ const initSockets = (httpServer) => {
         if (room.broadcasterId === socket.id) {
           io.to(streamId).emit("stream-ended");
           rooms.delete(streamId);
+          clearViewers(streamId);
           try {
             await Stream.updateOne(
               { _id: streamId },
@@ -158,16 +164,18 @@ const initSockets = (httpServer) => {
           }
           continue;
         }
+      }
 
-        if (room.viewers.has(socket.id)) {
-          room.viewers.delete(socket.id);
-          io.to(streamId).emit("viewer-count", { count: room.viewers.size });
-          if (room.broadcasterId) {
-            io.to(room.broadcasterId).emit("watcher-left", {
-              watcherId: socket.id,
-            });
-          }
-          await updateViewerCount(streamId);
+      const viewerStreamId = viewerStreamBySocket.get(socket.id);
+      if (viewerStreamId) {
+        viewerStreamBySocket.delete(socket.id);
+        const count = removeViewer(viewerStreamId, socket.id);
+        io.to(viewerStreamId).emit("viewer-count", { count });
+        const room = rooms.get(viewerStreamId);
+        if (room?.broadcasterId) {
+          io.to(room.broadcasterId).emit("watcher-left", {
+            watcherId: socket.id,
+          });
         }
       }
     });
