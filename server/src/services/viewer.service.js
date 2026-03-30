@@ -1,21 +1,39 @@
-const viewers = new Map(); // streamId -> Set(socketIds)
+const { redis } = require("../config/redis");
 
-const addViewer = (streamId, socketId) => {
-  if (!viewers.has(streamId)) {
-    viewers.set(streamId, new Set());
+const getKey = (streamId) => `stream:${streamId}:viewers`;
+
+const addViewer = async (streamId, socketId) => {
+  try {
+    const key = getKey(streamId);
+    await redis.sAdd(key, socketId);
+    return await redis.sCard(key);
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error("addViewer error", err);
+    return 0;
   }
-  viewers.get(streamId).add(socketId);
-  return viewers.get(streamId).size;
 };
 
-const removeViewer = (streamId, socketId) => {
-  if (!viewers.has(streamId)) return 0;
-  viewers.get(streamId).delete(socketId);
-  return viewers.get(streamId).size;
+const removeViewer = async (streamId, socketId) => {
+  try {
+    const key = getKey(streamId);
+    await redis.sRem(key, socketId);
+    return await redis.sCard(key);
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error("removeViewer error", err);
+    return 0;
+  }
 };
 
-const clearViewers = (streamId) => {
-  viewers.delete(streamId);
+const clearViewers = async (streamId) => {
+  try {
+    const key = getKey(streamId);
+    await redis.del(key);
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error("clearViewers error", err);
+  }
 };
 
 module.exports = { addViewer, removeViewer, clearViewers };
