@@ -73,7 +73,7 @@ const initSockets = (httpServer) => {
 
         const previousStreamId = viewerStreamBySocket.get(socket.id);
         if (previousStreamId && previousStreamId !== streamId) {
-          const previousCount = removeViewer(previousStreamId, socket.id);
+          const previousCount = await removeViewer(previousStreamId, socket.id);
           io.to(previousStreamId).emit("viewer-count", { count: previousCount });
           const previousRoom = rooms.get(previousStreamId);
           if (previousRoom?.broadcasterId) {
@@ -83,7 +83,7 @@ const initSockets = (httpServer) => {
           }
         }
 
-        const count = addViewer(streamId, socket.id);
+        const count = await addViewer(streamId, socket.id);
         viewerStreamBySocket.set(socket.id, streamId);
         socket.join(streamId);
 
@@ -135,7 +135,7 @@ const initSockets = (httpServer) => {
         if (room && room.broadcasterId === socket.id) {
           io.to(streamId).emit("stream-ended");
           rooms.delete(streamId);
-          clearViewers(streamId);
+          await clearViewers(streamId);
           await Stream.updateOne(
             { _id: streamId },
             { status: "offline", endedAt: new Date(), viewerCount: 0 }
@@ -152,7 +152,7 @@ const initSockets = (httpServer) => {
         if (room.broadcasterId === socket.id) {
           io.to(streamId).emit("stream-ended");
           rooms.delete(streamId);
-          clearViewers(streamId);
+          await clearViewers(streamId);
           try {
             await Stream.updateOne(
               { _id: streamId },
@@ -169,7 +169,7 @@ const initSockets = (httpServer) => {
       const viewerStreamId = viewerStreamBySocket.get(socket.id);
       if (viewerStreamId) {
         viewerStreamBySocket.delete(socket.id);
-        const count = removeViewer(viewerStreamId, socket.id);
+        const count = await removeViewer(viewerStreamId, socket.id);
         io.to(viewerStreamId).emit("viewer-count", { count });
         const room = rooms.get(viewerStreamId);
         if (room?.broadcasterId) {
