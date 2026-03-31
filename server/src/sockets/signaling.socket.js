@@ -2,10 +2,9 @@ const { Server } = require("socket.io");
 const jwt = require("jsonwebtoken");
 const Stream = require("../models/stream.model");
 const { env } = require("../config/env");
-const { addViewer, removeViewer, clearViewers } = require("../services/viewer.service");
+const { addViewer, removeViewerBySocket, clearViewers } = require("../services/viewer.service");
 
 const rooms = new Map();
-const viewerStreamBySocket = new Map();
 
 const getRoom = (streamId) => {
   if (!rooms.has(streamId)) {
@@ -71,11 +70,10 @@ const initSockets = (httpServer) => {
         }
         const room = getRoom(streamId);
 
-        const previousStreamId = viewerStreamBySocket.get(socket.id);
-        if (previousStreamId && previousStreamId !== streamId) {
-          const previousCount = await removeViewer(previousStreamId, socket.id);
-          io.to(previousStreamId).emit("viewer-count", { count: previousCount });
-          const previousRoom = rooms.get(previousStreamId);
+        const previous = await removeViewerBySocket(socket.id);
+        if (previous.streamId && previous.streamId !== streamId) {
+          io.to(previous.streamId).emit("viewer-count", { count: previous.count });
+          const previousRoom = rooms.get(previous.streamId);
           if (previousRoom?.broadcasterId) {
             io.to(previousRoom.broadcasterId).emit("watcher-left", {
               watcherId: socket.id,
@@ -83,8 +81,8 @@ const initSockets = (httpServer) => {
           }
         }
 
-        const count = await addViewer(streamId, socket.id);
-        viewerStreamBySocket.set(socket.id, streamId);
+        const userId = socket.user?.id || `guest:${socket.id}`;
+        const count = await addViewer({ streamId, userId, socketId: socket.id });
         socket.join(streamId);
 
         if (room.broadcasterId) {
@@ -166,12 +164,10 @@ const initSockets = (httpServer) => {
         }
       }
 
-      const viewerStreamId = viewerStreamBySocket.get(socket.id);
-      if (viewerStreamId) {
-        viewerStreamBySocket.delete(socket.id);
-        const count = await removeViewer(viewerStreamId, socket.id);
-        io.to(viewerStreamId).emit("viewer-count", { count });
-        const room = rooms.get(viewerStreamId);
+      const removed = await removeViewerBySocket(socket.id);
+      if (removed.streamId) {
+        io.to(removed.streamId).emit("viewer-count", { count: removed.count });
+        const room = rooms.get(removed.streamId);
         if (room?.broadcasterId) {
           io.to(room.broadcasterId).emit("watcher-left", {
             watcherId: socket.id,
