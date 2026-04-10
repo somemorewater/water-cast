@@ -1,5 +1,6 @@
 const { nanoid } = require("nanoid");
 const Stream = require("../models/stream.model");
+const { clearViewers } = require("./viewer.service");
 
 const createError = (status, message) => {
   const err = new Error(message);
@@ -24,10 +25,14 @@ const createStreamService = async ({
     throw createError(400, "Stream title must be at least 3 characters");
   }
 
-  await Stream.updateMany(
-    { streamer: userId, status: "live" },
-    { status: "offline", endedAt: new Date(), viewerCount: 0 }
-  );
+  const previousStreams = await Stream.find({ streamer: userId, status: "live" }).select("_id");
+  if (previousStreams.length) {
+    await Stream.updateMany(
+      { streamer: userId, status: "live" },
+      { status: "offline", endedAt: new Date(), viewerCount: 0 }
+    );
+    await Promise.all(previousStreams.map((stream) => clearViewers(stream._id.toString())));
+  }
 
   const streamKey = `sk_live_${nanoid(16)}`;
 
@@ -68,6 +73,7 @@ const endStreamService = async ({ id, userId }) => {
   stream.endedAt = new Date();
   stream.viewerCount = 0;
   await stream.save();
+  await clearViewers(stream._id.toString());
 
   return { message: "Stream ended" };
 };

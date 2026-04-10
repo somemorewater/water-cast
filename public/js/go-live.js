@@ -6,8 +6,8 @@ let streamId = null;
 let socket = null;
 const peerConnections = new Map();
 
-const rtcConfig = {
-  iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
+let rtcConfig = {
+  iceServers: [{ urls: ["stun:stun.l.google.com:19302", "stun:stun1.l.google.com:19302"] }],
 };
 
 // Elements
@@ -24,6 +24,16 @@ const streamKey = document.getElementById("streamKey");
 const streamLink = document.getElementById("streamLink");
 const copyLinkBtn = document.getElementById("copyLinkBtn");
 const streamHealthEl = document.getElementById("streamHealth");
+
+const loadRtcConfig = async () => {
+  try {
+    if (window.WatercastRTC?.getConfig) {
+      rtcConfig = await window.WatercastRTC.getConfig();
+    }
+  } catch (err) {
+    // fallback to default rtcConfig
+  }
+};
 
 const getStreamPayload = () => ({
   title: document.getElementById("streamTitle").value.trim(),
@@ -350,3 +360,7 @@ window.addEventListener("pagehide", () => {
     stopStream();
   }
 });
+
+(async () => {
+  await loadRtcConfig();
+})();

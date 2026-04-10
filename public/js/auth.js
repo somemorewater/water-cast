@@ -5,6 +5,12 @@ const showError = async (message) => {
   await window.WatercastUI?.alert(message);
 };
 
+const redirectToHome = () => {
+  const path = window.location.pathname || "/";
+  const base = path.endsWith(".html") ? path.replace(/[^/]+$/, "") : path;
+  window.location.assign(`${base}index.html`);
+};
+
 if (loginForm) {
   loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -23,7 +29,7 @@ if (loginForm) {
       window.WatercastApi.setToken(payload.token);
       await window.WatercastUI?.alert("Login successful! Redirecting to home...");
       setTimeout(() => {
-        window.location.href = "index.html";
+        redirectToHome();
       }, 600);
     } catch (err) {
       window.WatercastUI?.setButtonLoading(submitBtn, false);
@@ -68,7 +74,7 @@ if (signupForm) {
       window.WatercastApi.setToken(payload.token);
       await window.WatercastUI?.alert("Account created! Redirecting to home...");
       setTimeout(() => {
-        window.location.href = "index.html";
+        redirectToHome();
       }, 600);
     } catch (err) {
       window.WatercastUI?.setButtonLoading(submitBtn, false);

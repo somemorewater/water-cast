@@ -3,6 +3,7 @@ const { redis } = require("../config/redis");
 const getStreamUsersKey = (streamId) => `stream:${streamId}:users`;
 const getUserSocketsKey = (streamId, userId) => `stream:${streamId}:user:${userId}:sockets`;
 const getSocketMetaKey = (socketId) => `socket:${socketId}:viewer`;
+const VIEWER_SOCKET_TTL_SECONDS = 120;
 
 const addViewer = async ({ streamId, userId, socketId }) => {
   try {
@@ -11,15 +12,26 @@ const addViewer = async ({ streamId, userId, socketId }) => {
     const socketMetaKey = getSocketMetaKey(socketId);
 
     const script = `
+      local existingSockets = redis.call("SMEMBERS", KEYS[2])
+      for _, sid in ipairs(existingSockets) do
+        local metaKey = "socket:" .. sid .. ":viewer"
+        if redis.call("EXISTS", metaKey) == 0 then
+          redis.call("SREM", KEYS[2], sid)
+        end
+      end
+      if redis.call("SCARD", KEYS[2]) == 0 then
+        redis.call("SREM", KEYS[1], ARGV[1])
+      end
       redis.call("SADD", KEYS[2], ARGV[2])
       redis.call("SADD", KEYS[1], ARGV[1])
       redis.call("HSET", KEYS[3], "streamId", ARGV[3], "userId", ARGV[1])
+      redis.call("EXPIRE", KEYS[3], ARGV[4])
       return redis.call("SCARD", KEYS[1])
     `;
 
     const count = await redis.eval(script, {
       keys: [streamUsersKey, userSocketsKey, socketMetaKey],
-      arguments: [userId, socketId, streamId],
+      arguments: [userId, socketId, streamId, VIEWER_SOCKET_TTL_SECONDS],
     });
 
     return Number(count) || 0;
@@ -89,4 +101,14 @@ const clearViewers = async (streamId) => {
   }
 };
 
-module.exports = { addViewer, removeViewerBySocket, clearViewers };
+const touchViewer = async (socketId) => {
+  try {
+    const socketMetaKey = getSocketMetaKey(socketId);
+    await redis.expire(socketMetaKey, VIEWER_SOCKET_TTL_SECONDS);
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error("touchViewer error", err);
+  }
+};
+
+module.exports = { addViewer, removeViewerBySocket, clearViewers, touchViewer };

@@ -17,4 +17,9 @@ const streamSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+streamSchema.index(
+  { streamer: 1, status: 1 },
+  { unique: true, partialFilterExpression: { status: "live" } }
+);
+
 module.exports = mongoose.model("Stream", streamSchema);

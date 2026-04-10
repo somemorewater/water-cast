@@ -1,8 +1,8 @@
 let isPlaying = true;
 let isMuted = false;
 
-const rtcConfig = {
-  iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
+let rtcConfig = {
+  iceServers: [{ urls: ["stun:stun.l.google.com:19302", "stun:stun1.l.google.com:19302"] }],
 };
 
 // Elements
@@ -26,6 +26,16 @@ let streamId = null;
 let displayName = "Guest";
 let streamIsLive = true;
 let streamerId = null;
+
+const loadRtcConfig = async () => {
+  try {
+    if (window.WatercastRTC?.getConfig) {
+      rtcConfig = await window.WatercastRTC.getConfig();
+    }
+  } catch (err) {
+    // fallback to default rtcConfig
+  }
+};
 
 const updateStreamDetails = async () => {
   if (!streamId) return;
@@ -315,6 +325,7 @@ function addChatMessage(username, message) {
     return;
   }
 
+  await loadRtcConfig();
   await initUser();
   await updateStreamDetails();
   if (streamIsLive) {

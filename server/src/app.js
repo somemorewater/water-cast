@@ -7,6 +7,7 @@ const streamRoutes = require("./routes/stream.routes");
 const settingsRoutes = require("./routes/settings.routes");
 const userRoutes = require("./routes/user.routes");
 const { notFound, errorHandler } = require("./middleware/error.middleware");
+const { buildRtcConfig } = require("./utils/rtc-config");
 
 const app = express();
 
@@ -23,6 +24,10 @@ app.use(express.static(publicPath));
 
 app.get("/api/health", (req, res) => {
   res.json({ status: "ok" });
+});
+
+app.get("/api/rtc-config", (req, res) => {
+  res.json(buildRtcConfig());
 });
 
 app.use("/api/auth", authRoutes);
