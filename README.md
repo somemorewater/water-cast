@@ -21,7 +21,7 @@ This project is live-only (no recording) and intended as a learning and proof-of
 - Streaming: WebRTC
 - Authentication: JWT + bcrypt
 - Database: MongoDB
-- STUN: Google STUN (TURN optional)
+- STUN: Google STUN
 
 ## Project Structure
 
