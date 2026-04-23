@@ -3,7 +3,7 @@
 WaterCast is a live streaming platform built to explore real-time video and audio on the web.  
 It focuses on low-latency streams, a clean Node.js backend, and WebRTC signaling.
 
-This project is live-only (no recording) and intended as a learning and proof-of-concept platform.
+This project is live-only (no recording) and intended as a learning project.
 
 ## Features
 - Live video and audio streaming
