@@ -80,6 +80,6 @@ The backend serves the frontend from `public/` and runs at `http://localhost:500
 - Not production ready
 
 ## Future Improvements
-- SFU integration (mediasoup / LiveKit)
+- SFU integration
 - Stream recording
 - Moderation tools
