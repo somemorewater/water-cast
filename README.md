@@ -1,4 +1,4 @@
-# WaterCast
+# WaterCast - Realtime Streaming 
 
 WaterCast is a live streaming platform built to explore real-time video and audio on the web.  
 It focuses on low-latency streams, a clean Node.js backend, and WebRTC signaling.
